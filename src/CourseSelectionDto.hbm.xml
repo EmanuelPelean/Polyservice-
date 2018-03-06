@@ -1,0 +1,43 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.polyservice.dto.CourseSelectionDto" table="course_details"
+		schema="polyservice">
+
+		<id name="studentID">
+			<column name="userID" sql-type="varchar(50)" length="50"></column>
+		</id>
+
+		<property name="schoolAttending">
+			<column name="schoolAttending" sql-type="varchar(50)" length="50"></column>
+		</property>
+
+		<property name="programType">
+			<column name="programType" sql-type="varchar(50)" length="50"></column>
+		</property>
+
+		<property name="programNumber">
+			<column name="programNumber" sql-type="varchar(50)" length="50"></column>
+		</property>
+
+		<property name="licenseNum">
+			<column name="licenseNum" sql-type="varchar(50)" length="50"></column>
+		</property>
+
+		<property name="segOneSchool">
+			<column name="segOneSchool" sql-type="varchar(50)" length="50"></column>
+		</property>
+
+		<property name="permitDate">
+			<column name="permitDate" sql-type="varchar(50)" length="50"></column>
+		</property>
+
+		<property name="inputHours">
+			<column name="inputHours" sql-type="varchar(10)" length="10"></column>
+		</property>
+
+	</class>
+</hibernate-mapping>
