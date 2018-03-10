@@ -18,6 +18,7 @@
 <h3>Admin Page</h3>
 <a href="modifycourse">Add New Course</a><br>
 
+
  <script src="resources/js/config.js"></script>
 </body>
 </html>

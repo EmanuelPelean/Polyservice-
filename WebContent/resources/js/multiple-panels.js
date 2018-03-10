@@ -10,6 +10,7 @@ var ProgressBar = function(p_strId) {
 	var step2 = document.getElementById("step2");
 	var step3 = document.getElementById("step3");
 	var step4 = document.getElementById("step4");
+	var step5 = document.getElementById("step5");
 
 
 	/*
@@ -83,6 +84,8 @@ var ProgressBar = function(p_strId) {
 			replaceDivElem(target, 'step3');
 		} else if (step == 'li_4') {
 			replaceDivElem(target, 'step4');
+		}  else if (step == 'li_5') {
+			replaceDivElem(target, 'step5');
 		}
 	}
 	

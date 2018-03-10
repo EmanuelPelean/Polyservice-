@@ -11,7 +11,10 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>Registration</title>
+
 <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+<script src="resources/js/config.js"></script>
+
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -43,6 +46,7 @@
 	integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
 	crossorigin="anonymous"></script>
 
+
 <script src="https://code.jquery.com/jquery-1.12.4.js"
 	integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU="
 	crossorigin="anonymous"></script>
@@ -57,18 +61,70 @@
 
 
 		<ul id="id_progressbar2" class="progressbar2">
-			<li id="li_1">Student Info</li>
-			<li id="li_2">Course Selection</li>
-			<li id="li_3">Medical History</li>
-			<li id="li_4">Parent Info</li>
+			<li id="li_1">Student Credentials</li>
+			<li id="li_2">Student Info</li>
+			<li id="li_3">Course Selection</li>
+			<li id="li_4">Medical History</li>
+			<li id="li_5">Parent Info</li>
 		</ul>
 
 		<div id="target"></div>
 
 		<div id="step1" style="display: none">
+			<form class="ui " id="credentialsForm" onsubmit="pbar2.nextStep()">
+				<!-- Credentials Form -->
+				<div class="row">
 
-			<form:form action="signup" method="post" modelAttribute="command"
-				class="ui studentInfoForm" id="studentRegistrationForm"
+					<!-- Credentials Column -->
+					<div class="col-lg-12">
+
+						<div class="card my-4">
+							<h5 class="card-header">Student Login Credentials</h5>
+							<div class="card-body"></div>
+							<div class="row ">
+								<div class="col-lg-4 center">
+									<div class="control-group form-group">
+										<div class="controls">
+											<label>Email:</label> <input id="username"
+												class="form-control" name="username" type="text"></input>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-4 center">
+									<div class="control-group form-group">
+										<div class="controls">
+											<label>Password:</label> <input id="password"
+												class="form-control" name="password" type="password"></input>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-12">
+									<div class="control-group form-group">
+										<div id="stepBtns" class="controls">
+											<input id="btnSignUp" type="submit"
+												onClick="return signUp();" value="Begin Registration"
+												class="btn btn-primary">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /.row -->
+			</form>
+
+		</div>
+
+
+
+		<div id="step2" style="display: none">
+
+			<form class="ui studentInfoForm" id="studentRegistrationForm"
 				onsubmit="pbar2.nextStep()">
 
 				<!-- Registration Form -->
@@ -81,19 +137,14 @@
 							<h5 class="card-header">Student Info</h5>
 							<div class="card-body">
 
-
-								<form:input id="student" name="studentID" type="hidden" path="studentID"></form:input>
-								<form:input id="email" name="email"  type="hidden" path="email"></form:input>
-
 								<div class="row">
 									<div class="col-lg-4">
 										<div class="control-group form-group">
 											<div class="controls">
-												<label>First Name:</label>
-												<form:input id="firstName" class="form-control"
-													name="firstName" type="text" path="firstName"
+												<label>First Name:</label> <input id="firstName"
+													class="form-control" name="firstName" type="text"
 													required="required"
-													data-validation-required-message="Please enter your name."></form:input>
+													data-validation-required-message="Please enter your name."></input>
 												<div class="invalid-feedback">Please provide a valid
 													name.</div>
 											</div>
@@ -102,9 +153,8 @@
 									<div class="col-lg-4">
 										<div class="control-group form-group">
 											<div class="controls">
-												<label>Middle Name:</label>
-												<form:input id="middleName" name="middleName" type="text"
-													path="middleName" required="" class="form-control"></form:input>
+												<label>Middle Name:</label> <input id="middleName"
+													name="middleName" type="text" class="form-control"></input>
 												<p class="help-block"></p>
 											</div>
 										</div>
@@ -112,10 +162,10 @@
 									<div class="col-lg-4">
 										<div class="control-group form-group">
 											<div class="controls">
-												<label>Last Name:</label>
-												<form:input id="lastName" class="form-control"
-													name="lastName" type="text" path="lastName" required=""
-													data-validation-required-message="Please enter your name."></form:input>
+												<label>Last Name:</label> <input id="lastName"
+													class="form-control" name="lastName" type="text"
+													required="required"
+													data-validation-required-message="Please enter your name."></input>
 												<p class="help-block"></p>
 											</div>
 										</div>
@@ -128,10 +178,10 @@
 									<div class="col-lg-4">
 										<div class="control-group form-group">
 											<div class="controls">
-												<label>Street Address:</label>
-												<form:input id="address" class="form-control" name="address"
-													type="text" path="address" required=""
-													data-validation-required-message="Please enter your street address."></form:input>
+												<label>Street Address:</label> <input id="address"
+													class="form-control" name="address" type="text"
+													required="required"
+													data-validation-required-message="Please enter your street address."></input>
 												<p class="help-block"></p>
 											</div>
 										</div>
@@ -139,9 +189,8 @@
 									<div class="col-lg-4">
 										<div class="control-group form-group">
 											<div class="controls">
-												<label>Apt #:</label>
-												<form:input id="aptNum" class="form-control" name="aptNum"
-													type="text" path="aptNum"></form:input>
+												<label>Apt #:</label> <input id="aptNum"
+													class="form-control" name="aptNum" type="text"></input>
 												<p class="help-block"></p>
 											</div>
 										</div>
@@ -152,10 +201,9 @@
 									<div class="col-lg-4">
 										<div class="control-group form-group">
 											<div class="controls">
-												<label>City:</label>
-												<form:input id="city" class="form-control" name="city"
-													type="text" path="city" required=""
-													data-validation-required-message="Please enter your city."></form:input>
+												<label>City:</label> <input id="city" class="form-control"
+													name="city" type="text" required="required"
+													data-validation-required-message="Please enter your city."></input>
 												<p class="help-block"></p>
 											</div>
 										</div>
@@ -163,9 +211,8 @@
 									<div class="col-lg-3">
 										<div class="control-group form-group">
 											<div class="controls">
-												<label>State:</label>
-												<form:select id="state" class="form-control" name="state"
-													path="state" required=""
+												<label>State:</label> <select id="state"
+													class="form-control" name="state" required="required"
 													data-validation-required-message="Please select your state.">
 													<option value="MI">Michigan</option>
 													<option value="AL">Alabama</option>
@@ -218,7 +265,7 @@
 													<option value="WV">West Virginia</option>
 													<option value="WI">Wisconsin</option>
 													<option value="WY">Wyoming</option>
-												</form:select>
+												</select>
 												<p class="help-block"></p>
 											</div>
 										</div>
@@ -226,10 +273,10 @@
 									<div class="col-lg-2">
 										<div class="control-group form-group">
 											<div class="controls">
-												<label>Zip Code:</label>
-												<form:input id="zip" class="form-control" name="zip"
-													type="text" path="zip" maxlength="5" required=""
-													data-validation-required-message="Please enter your zip code."></form:input>
+												<label>Zip Code:</label> <input id="zip"
+													class="form-control" name="zip" type="text" maxlength="5"
+													required="required"
+													data-validation-required-message="Please enter your zip code."></input>
 												<p class="help-block"></p>
 											</div>
 										</div>
@@ -239,14 +286,12 @@
 								<hr>
 
 								<div class="row">
-									<div class="col-lg-3">
+									<div class="col-lg-4">
 										<div class="control-group form-group">
 											<div class="controls">
-												<label>Date of Birth:</label>
-												<form:input id="birth_date" class="form-control"
-													name="firstName" type="date" path="birth_date"
-													required="required"
-													data-validation-required-message="Please enter your name."></form:input>
+												<label>Date of Birth:</label> <input id="birth_date"
+													class="form-control" name="firstName" type="date" required
+													data-validation-required-message="Please enter your name."></input>
 											</div>
 										</div>
 									</div>
@@ -266,12 +311,10 @@
 											<div class="controls">
 												<label>Gender:</label>
 												<div class="radio">
-													<label> <form:radiobutton name="gender"
-															class="btn-group-toggle" value="female" path="gender" />
-														Female
-													</label> <label> <form:radiobutton name="gender"
-															class="btn-group-toggle" value="male" path="gender" />
-														Male
+													<label> <input type="radio" name="gender"
+														class="btn-group-toggle" value="female" /> Female
+													</label> <label> <input type="radio" name="gender"
+														class="btn-group-toggle" value="male" /> Male
 													</label>
 
 												</div>
@@ -286,12 +329,11 @@
 									<div class="col-lg-4">
 										<div class="control-group form-group">
 											<div class="controls">
-												<label>Student Home Phone#:</label>
-												<form:input id="phoneHome"
+												<label>Student Home Phone#:</label> <input id="phoneHome"
 													class="form-control input-medium bfh-phone"
 													data-format="+1 (ddd) ddd-dddd" name="phoneHome"
-													type="text" path="phoneHome" required=""
-													data-validation-required-message="Please enter your home phone number."></form:input>
+													type="text" required="required"
+													data-validation-required-message="Please enter your home phone number."></input>
 												<p class="help-block"></p>
 											</div>
 										</div>
@@ -299,12 +341,11 @@
 									<div class="col-lg-4">
 										<div class="control-group form-group">
 											<div class="controls">
-												<label>Student Cell Phone#:</label>
-												<form:input id="phoneStudent" name="phoneStudent"
-													type="text" path="phoneStudent"
+												<label>Student Cell Phone#:</label> <input id="phoneStudent"
 													class="form-control input-medium bfh-phone"
-													data-format="+1 (ddd) ddd-dddd" required=""
-													data-validation-required-message="Please enter your student's cell phone number."></form:input>
+													data-format="+1 (ddd) ddd-dddd" name="phoneStudent"
+													type="text" required="required"
+													data-validation-required-message="Please enter your student's cell phone number."></input>
 												<p class="help-block"></p>
 											</div>
 										</div>
@@ -315,7 +356,8 @@
 									<div class="col-lg-12">
 										<div class="control-group form-group">
 											<div id="stepBtns" class="controls">
-												<input id="nextBtn" type="submit" value="Next"
+												<input id="nextBtn-studentInfo"
+													onclick="submitStudentInfo(); updateUserFB();" type="submit" value="Next"
 													class="btn btn-primary">
 											</div>
 										</div>
@@ -328,20 +370,20 @@
 				</div>
 
 				<!-- /.row -->
-			</form:form>
+			</form>
+
 
 		</div>
 
-		<div id="step2" style="display: none">
-			<form:form action="#" method="post" modelAttribute="command2"
+		<div id="step3" style="display: none">
+			<form class="ui courseInfoForm" id="courseInformationForm"
 				onsubmit="pbar2.nextStep()">
 
-				<!-- Registration Form -->
+				<!-- Course Info Form -->
 				<div class="row">
 
-					<form:input id="student" type="hidden" path="studentID"></form:input>
 
-					<!-- Registration Content Column -->
+					<!-- Course Info Content Column -->
 					<div class="col-lg-12">
 
 						<div class="card my-4">
@@ -352,9 +394,9 @@
 								<div class="col-lg-5">
 									<div class="control-group form-group">
 										<div class="controls">
-											<label>Which school do you currently attend?</label>
-											<form:select id="schoolAttending" class="form-control"
-												name="schoolAttending" path="schoolAttending" required=""
+											<label>Which school do you currently attend?</label> <select
+												id="schoolAttending" class="form-control"
+												name="schoolAttending" required="required"
 												data-validation-required-message="Current school attending">
 												<option value="00">Select School</option>
 												<option value="Advancepath Academy">Advancepath
@@ -414,7 +456,7 @@
 													High School</option>
 												<option value="Other">Other</option>
 
-											</form:select>
+											</select>
 											<p class="help-block"></p>
 										</div>
 									</div>
@@ -424,14 +466,13 @@
 								<div class="col-lg-5">
 									<div class="control-group form-group">
 										<div class="controls">
-											<label for="Program Type"></label>
-											<form:select id="programType" onchange="showProgram()"
-												name="programType" class="form-control" path="programType"
-												required="">
+											<label for="Program Type"></label> <select id="programType"
+												onchange="showProgram()" name="programType"
+												class="form-control" required="required">
 												<option value="00">Program Type</option>
 												<option value="01">Segment 1</option>
 												<option value="02">Segment 2</option>
-											</form:select>
+											</select>
 											<p class="help-block"></p>
 										</div>
 									</div>
@@ -442,11 +483,11 @@
 								<div class="col-lg-5">
 									<div class="control-group form-group">
 										<div class="controls">
-											<label for="Program Type"></label>
-											<form:select id="programNumber" name="programNumber"
-												class="d-none form-control" path="programNumber">
+											<label for="programNumber"></label> <select
+												id="programNumber" name="programNumber"
+												class="d-none form-control" required="required">
 												<option value="">Select Course</option>
-											</form:select>
+											</select>
 											<p class="help-block"></p>
 										</div>
 									</div>
@@ -469,11 +510,10 @@
 									<div class="col-lg-4">
 										<div class="control-group form-group">
 											<div class="controls">
-												<label>License/Permit #:</label>
-												<form:input id="licenseNum" class="form-control"
-													name="licenseNum" type="text" path="licenseNum"
+												<label>License/Permit #:</label> <input id="licenseNum"
+													class="form-control" name="licenseNum" type="text"
 													placeholder="i.e. W 234 543 879 948" required="required"
-													data-validation-required-message="Please enter your name."></form:input>
+													data-validation-required-message="Please enter your name."></input>
 												<div class="invalid-feedback">Please provide a valid
 													name.</div>
 											</div>
@@ -485,11 +525,10 @@
 									<div class="col-lg-4">
 										<div class="control-group form-group">
 											<div class="controls">
-												<label>Which school did you attend for Segment 1?</label>
-												<form:input id="segOneSchool" class="form-control"
-													name="segOneSchool" type="text" path="segOneSchool"
-													required="required"
-													data-validation-required-message="Please enter your name."></form:input>
+												<label>Which school did you attend for Segment 1?</label> <input
+													id="segOneSchool" class="form-control" name="segOneSchool"
+													type="text" required="required"
+													data-validation-required-message="Please enter your name."></input>
 												<div class="invalid-feedback">Please provide a valid
 													name.</div>
 											</div>
@@ -504,8 +543,8 @@
 											<div class="controls">
 												<label for="permitDate">Please select your permit
 													issue date (Level 1 License). </label><i class="material-icons">&#xE887;</i>
-												<form:input type="date" id="permitDate" path="permitDate"
-													class="form-control  col-lg-3"></form:input>
+												<input type="date" id="permitDate" required="required"
+													class="form-control  col-lg-3"></input>
 												<p class="help-block"></p>
 											</div>
 										</div>
@@ -525,8 +564,8 @@
 										<label for="inputHours" class="col-12 col-form-label">How
 											many hours of driving have you logged so far?</label>
 										<div class="col-lg-2">
-											<form:input class="form-control" type="number" value=""
-												id="inputHours" path="inputHours"></form:input>
+											<input class="form-control" type="text" value=""
+												id="inputHours" required="required"></input>
 										</div>
 									</div>
 								</div>
@@ -538,8 +577,8 @@
 										<div id="stepBtns" class="controls">
 											<input id="previousBtn" type="button" value="Previous"
 												onclick="pbar2.prevStep();" class="btn btn-primary">
-											<input id="nextBtn" type="submit" value="Next"
-												class="btn btn-primary">
+											<input id="nextBtn" onclick="submitCourseInfo(); addStudentToCourse();"
+												type="submit" value="Next" class="btn btn-primary">
 										</div>
 									</div>
 								</div>
@@ -549,17 +588,16 @@
 				</div>
 
 				<!-- /.row -->
-			</form:form>
+			</form>
 
 		</div>
-		<div id="step3" style="display: none">
-			<form:form action="#" method="post" modelAttribute="command3"
+		<div id="step4" style="display: none">
+			<form class="ui medicalInfoForm" id="medicalInformationForm"
 				onsubmit="pbar2.nextStep()">
-				<!-- Registration Form -->
+				<!-- Medical History Form -->
 				<div class="row">
-					<form:input id="student" type="hidden" path="studentID"></form:input>
 
-					<!-- Registration Content Column -->
+					<!-- Medical History Content Column -->
 					<div class="col-lg-12">
 
 						<div class="card my-4">
@@ -584,8 +622,8 @@
 												</div>
 											</div>
 										</div>
-										<form:textarea rows="3" cols="100" class="form-control"
-											id="accommodations" path="accommodations" maxlength="999" style="resize: none"></form:textarea>
+										<textarea rows="3" cols="100" class="form-control"
+											id="accommodations" maxlength="999" style="resize: none"></textarea>
 									</div>
 								</div>
 								<div class="control-group form-group">
@@ -602,8 +640,8 @@
 												</div>
 											</div>
 										</div>
-										<form:textarea rows="3" cols="100" class="form-control"
-											id="medication" path="medication" maxlength="999" style="resize: none"></form:textarea>
+										<textarea rows="3" cols="100" class="form-control"
+											id="medication" maxlength="999" style="resize: none"></textarea>
 									</div>
 								</div>
 								<div class="control-group form-group">
@@ -623,8 +661,8 @@
 												</div>
 											</div>
 										</div>
-										<form:textarea rows="3" cols="100" class="form-control"
-											id="disability" path="disability" maxlength="999" style="resize: none"></form:textarea>
+										<textarea rows="3" cols="100" class="form-control"
+											id="disability" maxlength="999" style="resize: none"></textarea>
 									</div>
 								</div>
 								<div class="control-group form-group">
@@ -642,8 +680,8 @@
 												</div>
 											</div>
 										</div>
-										<form:textarea rows="3" cols="100" class="form-control"
-											id="seizure" path="seizure" maxlength="999" style="resize: none"></form:textarea>
+										<textarea rows="3" cols="100" class="form-control"
+											id="seizure" maxlength="999" style="resize: none"></textarea>
 									</div>
 								</div>
 								<div class="control-group form-group">
@@ -660,8 +698,8 @@
 												</div>
 											</div>
 										</div>
-										<form:textarea rows="3" cols="100" class="form-control"
-											id="driveStatus" path="driveStatus" maxlength="999" style="resize: none"></form:textarea>
+										<textarea rows="3" cols="100" class="form-control"
+											id="driveStatus" maxlength="999" style="resize: none"></textarea>
 									</div>
 								</div>
 							</div>
@@ -672,8 +710,8 @@
 										<div id="stepBtns" class="controls">
 											<input id="previousBtn" type="button" value="Previous"
 												onclick="pbar2.prevStep();" class="btn btn-primary">
-											<input id="nextBtn" type="submit" value="Next"
-												class="btn btn-primary">
+											<input id="nextBtn" onclick="submitMedicalInfo()"
+												type="submit" value="Next" class="btn btn-primary">
 										</div>
 									</div>
 								</div>
@@ -682,17 +720,17 @@
 					</div>
 				</div>
 				<!-- /.row -->
-			</form:form>
+			</form>
 
 		</div>
-		<div id="step4" style="display: none">
-			<form:form action="#" method="post" modelAttribute="command4">
+		<div id="step5" style="display: none">
+			<form class="ui guardianInfoForm" id="guardianInformationForm"
+				onsubmit="submitMedicalInfo()">
 
-				<!-- Registration Form -->
+				<!-- Guardian Info Form -->
 				<div class="row">
-					<form:input id="student" type="hidden" path="studentID"></form:input>
 
-					<!-- Registration Content Column -->
+					<!-- Guardian Info Content Column -->
 					<div class="col-lg-12">
 
 						<div class="card my-4">
@@ -704,8 +742,8 @@
 										<div class="control-group form-group">
 											<div class="controls">
 												<label>How did you find out about us?</label>
-												<form:textarea rows="2" cols="100" class="form-control"
-													id="marketing" path="marketing" maxlength="999" style="resize: none"></form:textarea>
+												<textarea rows="2" cols="100" class="form-control"
+													id="marketing" maxlength="999" style="resize: none"></textarea>
 											</div>
 										</div>
 									</div>
@@ -715,10 +753,10 @@
 									<div class="col-lg-4">
 										<div class="control-group form-group">
 											<div class="controls">
-												<label>Parent/Guardian Full Name:</label> <form:input
-													id="guardianName" class="form-control" name="guardianName" path="guardianName"
-													type="text" required=""
-													data-validation-required-message="Please enter a valid name."></form:input>
+												<label>Parent/Guardian Full Name:</label> <input
+													id="guardianName" class="form-control" name="guardianName"
+													type="text" required="required"
+													data-validation-required-message="Please enter a valid name."></input>
 												<p class="help-block"></p>
 											</div>
 										</div>
@@ -742,10 +780,10 @@
 									<div class="col-lg-4">
 										<div class="control-group form-group">
 											<div class="controls">
-												<label>Street Address:</label> <form:input id="guardianAddress"
-													class="form-control" name="guardianAddress" path="guardianAddress" type="text"
-													required=""
-													data-validation-required-message="Please enter your street address."></form:input>
+												<label>Street Address:</label> <input id="guardianAddress"
+													class="form-control" name="guardianAddress" type="text"
+													required="required"
+													data-validation-required-message="Please enter your street address."></input>
 												<p class="help-block"></p>
 											</div>
 										</div>
@@ -754,8 +792,8 @@
 									<div class="col-lg-4">
 										<div class="control-group form-group">
 											<div class="controls">
-												<label>Apt #:</label> <form:input id="guardianApt" path="guardianApt"
-													class="form-control" name="guardianApt" type="text"></form:input>
+												<label>Apt #:</label> <input id="guardianApt"
+													class="form-control" name="guardianApt" type="text"></input>
 												<p class="help-block"></p>
 											</div>
 										</div>
@@ -766,10 +804,10 @@
 									<div class="col-lg-4">
 										<div class="control-group form-group">
 											<div class="controls">
-												<label>City:</label> <form:input id="guardianCity" path="guardianCity"
+												<label>City:</label> <input id="guardianCity"
 													class="form-control" name="guardianCity" type="text"
 													required="required"
-													data-validation-required-message="Please enter your city."></form:input>
+													data-validation-required-message="Please enter your city."></input>
 												<p class="help-block"></p>
 											</div>
 										</div>
@@ -777,9 +815,9 @@
 									<div class="col-lg-3">
 										<div class="control-group form-group">
 											<div class="controls">
-												<label>State:</label>
-												<form:select id="guardianState" class="form-control"
-													name="guardianState" path="guardianState" required=""
+												<label>State:</label> <select id="guardianState"
+													class="form-control" name="guardianState"
+													required="required"
 													data-validation-required-message="Please select your state.">
 													<option value="MI">Michigan</option>
 													<option value="AL">Alabama</option>
@@ -832,7 +870,7 @@
 													<option value="WV">West Virginia</option>
 													<option value="WI">Wisconsin</option>
 													<option value="WY">Wyoming</option>
-												</form:select>
+												</select>
 												<p class="help-block"></p>
 											</div>
 										</div>
@@ -840,11 +878,10 @@
 									<div class="col-lg-2">
 										<div class="control-group form-group">
 											<div class="controls">
-												<label>Zip Code:</label>
-												<form:input id="guardianZip" class="form-control"
-													name="guardianZip" type="text" path="guardianZip"
-													maxlength="5" required=""
-													data-validation-required-message="Please enter your zip code."></form:input>
+												<label>Zip Code:</label> <input id="guardianZip"
+													class="form-control" name="guardianZip" type="text"
+													maxlength="5" required="required"
+													data-validation-required-message="Please enter your zip code."></input>
 												<p class="help-block"></p>
 											</div>
 										</div>
@@ -854,13 +891,15 @@
 									<div class="col-lg-4">
 										<div class="control-group form-group">
 											<div class="controls">
-												<label>Parent/Guardian Phone#:</label>
-												<form:input id="guardianPhone"
+												<label>Parent/Guardian Phone#:</label> <input
+													id="guardianPhone"
 													class="form-control input-medium bfh-phone"
 													data-format="+1 (ddd) ddd-dddd" name="guardianPhone"
-													type="text" path="guardianPhone" required=""
-													data-validation-required-message="Please enter your home phone number."></form:input>
+													type="text" required="required"
+													data-validation-required-message="Please enter your home phone number."></input>
 												<p class="help-block"></p>
+
+
 											</div>
 										</div>
 									</div>
@@ -872,8 +911,8 @@
 										<div id="stepBtns" class="controls">
 											<input id="previousBtn" type="button" value="Previous"
 												onclick="pbar2.prevStep();" class="btn btn-primary">
-											<input id="sumbitBtn" type="submit" value="Submit Info"
-												class="btn btn-primary">
+											<input id="sumbitBtn" onclick="submitGuardianInfo()"
+												type="button" value="Submit Info" class="btn btn-primary">
 										</div>
 									</div>
 								</div>
@@ -884,7 +923,7 @@
 				</div>
 
 				<!-- /.row -->
-			</form:form>
+			</form>
 
 		</div>
 
@@ -895,14 +934,10 @@
 	<input type="button" onclick="testMe()" value="test">
 
 
-	<script src="resources/js/config.js"></script>
 	<script src="resources/js/registration.js"></script>
 	<script src="resources/js/form-phone.js"></script>
 	<script src="resources/js/multiple-panels.js"></script>
 	<script src="resources/js/birthdayCalc.js"></script>
-	<script src="resources/js/studentinfoval.js"></script>
-	<script src="resources/js/sameAddressCheck.js"></script>
-	<script src="resources/js/dashboard.js"></script>
 
 
 </body>

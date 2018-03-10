@@ -15,9 +15,11 @@ import java.util.Calendar;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -35,6 +37,7 @@ import com.google.api.client.repackaged.org.apache.commons.codec.binary.Base64;
 
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
@@ -47,11 +50,15 @@ public class HomeController {
 
 	@RequestMapping({ "/", "/home" })
 	public String home(Model model, HttpServletResponse response) {
-		
+				
+		String cred = APICredentials.GOOGLE_API_KEY;
+				
+		model.addAttribute("google_key", cred);
 
 		response.addCookie(new Cookie("steamID", "manu"));
 		response.addCookie(new Cookie("avatar", "playerAvatar"));
 		response.addCookie(new Cookie("persona", "playerPersona"));
+		
 		
 		String state = null;
 
@@ -72,13 +79,24 @@ public class HomeController {
 
 	
 	@RequestMapping({ "/registration" })
-	public ModelAndView studentRegistration(Model model2, Model model3, Model model4) {
+	public String studentRegistration(Model model) {
 		
-		model2.addAttribute("command2", new CourseSelectionDto());
-		model3.addAttribute("command3", new MedicalHistoryDto());
-		model4.addAttribute("command4", new GuardianInfoDto());
+				
+				// Use this to set user id as time stamp, just for development
+				// 1) create a java calendar instance 
+				Calendar calendar = Calendar.getInstance();
 
-		return new ModelAndView("registration", "command", new StudentInfoDto());
+				// 2) get a java.util.Date from the calendar instance.
+				// this date will represent the current instant, or "now".
+				java.util.Date now = calendar.getTime();
+
+				// 3) a java current time (now) instance
+				java.sql.Timestamp currentTimestamp = new java.sql.Timestamp(now.getTime());
+				 
+				model.addAttribute("time", currentTimestamp);
+				
+
+		return "registration";
 	}
 
 	// this is called when the user clicks to submit form data
@@ -106,10 +124,12 @@ public class HomeController {
 
 	@RequestMapping({ "/dashboard" })
 	public String studentDashboard(Model model, HttpServletResponse response) {
-
+		
+		
 		response.addCookie(new Cookie("steamID", "manu"));
 		response.addCookie(new Cookie("avatar", "playerAvatar"));
 		response.addCookie(new Cookie("persona", "playerPersona"));
+		
 		return "dashboard";
 	}
 	
@@ -201,5 +221,51 @@ public class HomeController {
 		return new ModelAndView("home", "", "");
 	}
 	
-
+	
+	//TODO Add these to a REST Controller
+	
+	@RequestMapping(value = "studentInfoFormSubmit", method = RequestMethod.POST)
+    public String submitStudentInfo(@RequestBody StudentInfoDto studentInfoForm) {
+		
+		System.out.println(studentInfoForm.toString());
+		
+		//Push the current student information form data to MySQL via hibernate
+		UsersDao dao = DaoFactory.getInstance(DaoFactory.USERSDAO);
+		dao.insertUser(studentInfoForm);
+		
+		return "registration";
+    }
+	
+	@RequestMapping(value = "studentInfoFormRetrieve", method = RequestMethod.POST)
+    public String retrieveStudentInfo(@RequestBody StudentInfoDto studentInfoForm) {
+		
+		//Push the current student information form data to MySQL via hibernate
+		UsersDao dao = DaoFactory.getInstance(DaoFactory.USERSDAO);
+		
+		StudentInfoDto user = dao.getUserInfo(studentInfoForm.getStudentID());
+		System.out.println("The returned user is: " + user);
+		
+		return "registration";
+    }
+	
+	
+	
+	@RequestMapping(value = "courseInfoFormSubmit", method = RequestMethod.POST)
+    public String submitCourseInfo(@RequestBody CourseSelectionDto courseInfoForm) {
+		
+		System.out.println(courseInfoForm.toString());
+		
+		return "registration";
+    }
+	
+	@RequestMapping(value = "medicalInfoFormSubmit", method = RequestMethod.POST)
+    public String submitMedicalInfo(@RequestBody MedicalHistoryDto medicalInfoForm) {
+		
+		System.out.println(medicalInfoForm.toString());
+		
+		return "registration";
+    }
+	
+	
+	
 }

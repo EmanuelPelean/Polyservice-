@@ -1,7 +1,13 @@
 package com.polyservice.dto;
 
-public class GuardianInfoDto {
+import java.io.Serializable;
+
+public class GuardianInfoDto implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String studentID;
 	private String marketing;
 	private String guardianName;

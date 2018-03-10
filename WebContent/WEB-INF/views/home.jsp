@@ -22,12 +22,28 @@
 <link href="resources/css/modern-business.css" rel="stylesheet">
 
 <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+<script src="resources/js/config.js"></script>
 
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
 	integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
 	crossorigin="anonymous">
 
+<script async defer
+	src="https://maps.googleapis.com/maps/api/js?key=${google_key}&callback=initMap">
+	
+</script>
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
+	integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
+	integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+	crossorigin="anonymous"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+	integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+	crossorigin="anonymous"></script>
 
 
 </head>
@@ -61,19 +77,16 @@
 							Other Pages </a>
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdownBlog">
-							<a class="dropdown-item" href="ajax">Ajax
-								Page</a>
-							<a class="dropdown-item" href="registration">Registration
-								Page</a> <a class="dropdown-item" href="schedule">Schedule</a> <a
+							<a class="dropdown-item" href="ajax">Ajax Page</a> <a
+								class="dropdown-item" href="registration">Registration Page</a>
+							<a class="dropdown-item" href="schedule">Schedule</a> <a
 								class="dropdown-item" href="dashboard">Dashboard Page</a> <a
 								class="dropdown-item" href="adminconsole">Admin Console Page</a>
 							<a class="dropdown-item"
 								href="https://accounts.google.com/o/oauth2/v2/auth?client_id=550605181054-gaaodk6ms9ce6inelma166gh03s8crhf.apps.googleusercontent.com&response_type=code&scope=openid%20email&redirect_uri=http://localhost:8080/Polyservice/result&state=${state }&login_hint=jsmith@example.com&nonce=0394852-3190485-2490358">Login
 								Test</a>
 						</div></li>
-
-
-					<li class="nav-item dropdown"><a href="#"
+					<li id="loginLi" class="nav-item dropdown"><a href="#"
 						class="nav-link dropdown-toggle" data-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false">Log In <span
 							class="caret"></span>
@@ -128,8 +141,8 @@
 											<div class="col-lg-12">
 												<div class="text-center">
 													<h6>First time user?</h6>
-													<a href="#" class="forgot-password">Click here to
-														register!</a>
+													<a id="btnSignUp" href="registration"
+														class="forgot-password">Click here to register!</a>
 												</div>
 											</div>
 										</div>
@@ -138,6 +151,8 @@
 								</form>
 							</div>
 						</ul></li>
+					<li id="logoutLi" class="nav-item"><a class="nav-link"
+						id="btnLogout" href="#">Log Out</a></li>
 				</ul>
 			</div>
 		</div>
@@ -267,7 +282,7 @@
 
 	<p>
 
-	<!-- Footer -->
+		<!-- Footer -->
 	<footer class="py-5 bg-dark">
 		<div class="container">
 			<p class="m-0 text-center text-white">Copyright &copy;
@@ -275,26 +290,8 @@
 		</div>
 		<!-- /.container -->
 	</footer>
+	
+<script src="resources/js/home.js"></script>
 
-
-	<!-- Hide this later due to google maps API -->
-	<script async defer
-		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBuemQ8dTROg2p5-0pNB5c_IbQ9JKS55Kw&callback=initMap">
-	</script>
-
-
-	<script src="resources/js/config.js"></script>
-	<script src="resources/js/home.js"></script>
-	<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
-		integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
-		integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
-		integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
-		crossorigin="anonymous"></script>
 </body>
 </html>

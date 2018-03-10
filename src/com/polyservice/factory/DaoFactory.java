@@ -11,13 +11,17 @@ import com.polyservice.dao.UsersDao;
  *
  */
 public class DaoFactory {
-	
-public static final String USERSDAO = "userdao";
+
+	public static final String USERSDAO = "userdao";
+	public static final String COURSEDAO = "coursedao";
 
 	public static UsersDao getInstance(String type) {
+
 		UserDaoImpl daoimpl = null;
+
 		switch (type) {
-		case USERSDAO: 
+
+		case USERSDAO:
 			daoimpl = new UserDaoImpl();
 			break;
 		default:
@@ -25,5 +29,6 @@ public static final String USERSDAO = "userdao";
 		}
 		return daoimpl;
 	}
+
 
 }

@@ -12,5 +12,7 @@ import com.polyservice.dto.StudentInfoDto;
 public interface UsersDao {
 	
 	void insertUser(StudentInfoDto newUser);
+	
+	StudentInfoDto getUserInfo(String userId);
 
 }

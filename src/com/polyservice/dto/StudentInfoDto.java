@@ -1,7 +1,13 @@
 package com.polyservice.dto;
 
-public class StudentInfoDto {
+import java.io.Serializable;
 
+public class StudentInfoDto implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String studentID;
 	private String email;
 	private String firstName;

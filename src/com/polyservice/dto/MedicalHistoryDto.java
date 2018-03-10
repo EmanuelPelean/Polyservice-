@@ -1,7 +1,13 @@
 package com.polyservice.dto;
 
-public class MedicalHistoryDto {
+import java.io.Serializable;
 
+public class MedicalHistoryDto implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String studentID;
 	private String accommodations;
 	private String medication;
@@ -44,5 +50,11 @@ public class MedicalHistoryDto {
 	}
 	public void setDriveStatus(String driveStatus) {
 		this.driveStatus = driveStatus;
+	}
+	@Override
+	public String toString() {
+		return "MedicalHistoryDto [studentID=" + studentID + ", accommodations=" + accommodations + ", medication="
+				+ medication + ", disability=" + disability + ", seizure=" + seizure + ", driveStatus=" + driveStatus
+				+ "]";
 	}
 }
