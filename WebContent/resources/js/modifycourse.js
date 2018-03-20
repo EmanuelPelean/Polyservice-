@@ -59,10 +59,10 @@ $(function() {
 	 
 	  span1.appendChild(span2);
 	  
-	  const span3 = document.createElement('span');
-	  span3.classList.add('glyphicon');
-	  span3.classList.add('glyphicon-play');
-	  span2.appendChild(span3);
+	  const expandIcon = document.createElement('i');
+	  expandIcon.classList.add('fas');
+	  expandIcon.classList.add('fa-edit');
+	  span2.appendChild(expandIcon);
 	  
 	  studentList.appendChild(a);
 	    });
@@ -316,38 +316,15 @@ $(function() {
 		var span = document.getElementsByClassName("close")[0];
 		
 		// Get the <p> element where we verify the course to delete
-		var info = document.getElementById('deleteConfirmInfo');
+		var info = document.getElementById('deleteCourseModalLabel');
 
 		// When the user clicks the button, open the modal
 		deleteCourse.onclick = function() {
 			if(idResponse != null){
-		    modal.style.display = "block";
 		    info.innerText = ("Are you sure you want to PERMANENTLY DELETE course " + idResponse +"?");
 		    } else {
-		    	console.log('is null');
+		    	console.log('error - no course selected!');
 		    }
 		}
-		
-		// When the user clicks the no button just close the modal
-		btnNo.onclick = function() {
-			modal.style.display = "none";
-		}
-
-		// When the user clicks on <span> (x), close the modal
-		span.onclick = function() {
-		    modal.style.display = "none";
-		}
-
-		function closeModal(){
-			modal.style.display = "none";
-		}
-		
-		// When the user clicks anywhere outside of the modal, close it
-		window.onclick = function(event) {
-		    if (event.target == modal) {
-		        modal.style.display = "none";
-		    }
-		}
-		
 		
 

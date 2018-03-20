@@ -5,7 +5,10 @@ var state;
 var zip;
 var id;
 var email;
-
+var dataReg = {};
+var dataCourse = {}
+var dataMed = {}
+var dataGuard = {}
 
 $(document).on('change', '#inputHours', function () {
 	var inputHours = document.getElementById('inputHours');
@@ -17,42 +20,34 @@ $(document).on('change', '#inputHours', function () {
 
 (function() {
 	
-	$(document).on('change', '#address', function () {
-		   address = document.getElementById('address');
-		});
-
-	$(document).on('change', '#aptNum', function () {
-		aptNum = document.getElementById('aptNum');
-		});
-
-	$(document).on('change', '#city', function () {
-		city = document.getElementById('city');
-		});
-
-	$(document).on('change', '#state', function () {
-		state = document.getElementById('state');
-		});
-
-	$(document).on('change', '#zip', function () {
-		zip = document.getElementById('zip');
-		});
+	$("#studentUserId").val(id);
 	
-	$(document).on('change', '#programType', function () {
-		showProgram();
-		});
-	
-	
-
 	$(document).on('change', '#sameAddressCheck', function () {
 		if ($('#sameAddressCheck').is(':checked')) {
 			
-			$('#guardianAddress').val(address.value);
-			if(aptNum.value != null){
-				$('#guardianApt').val(aptNum.value);
-			}
-			$('#guardianCity').val(city.value);
-			$('#guardianState').val(state.value);
-			$('#guardianZip').val(zip.value);
+			$(document).on('change', '#address', function () {
+				   address = document.getElementById('address');
+				});
+
+			$(document).on('change', '#aptNum', function () {
+				aptNum = document.getElementById('aptNum');
+				});
+
+			$(document).on('change', '#city', function () {
+				city = document.getElementById('city');
+				});
+
+			$(document).on('change', '#state', function () {
+				state = document.getElementById('state');
+				});
+
+			$(document).on('change', '#zip', function () {
+				zip = document.getElementById('zip');
+				});
+			
+			$(document).on('change', '#programType', function () {
+				showProgram();
+				});
 			
 		} else {
 			$('#guardianAddress').val("");
@@ -185,28 +180,28 @@ function signUp() {
 	  
 function submitStudentInfo(){
 	console.log("we are in the student form")
-	var data = {}
-	data["studentID"] = id;
-	data["email"] = email;
-	data["firstName"] = $("#firstName").val();
-	data["middleName"] = $("#middleName").val();
-	data["lastName"] = $("#lastName").val();
-	data["address"] = $("#address").val();
-	data["aptNum"] = $("#aptNum").val();
-	data["city"] = $("#city").val();
-	data["state"] = $("#state").val();
-	data["zip"] = $("#zip").val();
-	data["birth_date"] = $("#birth_date").val();
-	data["exact_age"] = $("#exact_age").val();
-	data["phoneHome"] = $("#phoneHome").val();
-	data["phoneStudent"] = $("#phoneStudent").val();
-	data["gender"] = $("input:radio[name ='gender']:checked").val();
+	dataReg["studentID"] = id;
+	dataReg["email"] = email;
+	dataReg["firstName"] = $("#firstName").val();
+	dataReg["middleName"] = $("#middleName").val();
+	dataReg["lastName"] = $("#lastName").val();
+	dataReg["address"] = $("#address").val();
+	dataReg["aptNum"] = $("#aptNum").val();
+	dataReg["city"] = $("#city").val();
+	dataReg["state"] = $("#state").val();
+	dataReg["zip"] = $("#zip").val();
+	dataReg["birth_date"] = $("#birth_date").val();
+	dataReg["exact_age"] = $("#exact_age").val();
+	dataReg["phoneHome"] = $("#phoneHome").val();
+	dataReg["phoneStudent"] = $("#phoneStudent").val();
+	dataReg["gender"] = $("input:radio[name ='gender']:checked").val();
+	
 
 	$.ajax({
 		type : "POST",
 		contentType : "application/json",
 		url : "studentInfoFormSubmit.htm",
-		data : JSON.stringify(data),
+		data : JSON.stringify(dataReg),
 		dataType : 'json',
 		timeout : 600000,
 		success : function(data) {
@@ -216,26 +211,42 @@ function submitStudentInfo(){
 			console.log('there definitely was an error' + e);
 		}
 	});
+	
+	
 }
 
+function getStudentInfo() {
+	$("#firstName").val(dataReg["firstName"]); 
+	$("#middleName").val(dataReg["middleName"]); 
+	$("#lastName").val(dataReg["lastName"]);
+	$("#address").val(dataReg["address"]);
+	$("#aptNum").val(dataReg["aptNum"]);
+	$("#city").val(dataReg["city"]);
+	$("#state").val(dataReg["state"]);
+	$("#zip").val(dataReg["zip"]);
+	$("#birth_date").val(dataReg["birth_date"]);
+	$("#exact_age").val(dataReg["exact_age"]);
+	$("#phoneHome").val(dataReg["phoneHome"]);
+	$("#phoneStudent").val(dataReg["phoneStudent"]);
+	$('input[name=gender][value=' + dataReg["gender"] + ']').prop('checked',true);
+}
 
 function submitCourseInfo(){
 	console.log("we are in the course form")
-	var data = {}
-	data["studentID"] = id;
-	data["schoolAttending"] = $("#schoolAttending").val();
-	data["programType"] = $("#programType").val();
-	data["programNumber"] = $("#programNumber").val();
-	data["licenseNum"] = $("#licenseNum").val();
-	data["segOneSchool"] = $("#segOneSchool").val();
-	data["permitDate"] = $("#permitDate").val();
-	data["inputHours"] = $("#inputHours").val();
+	dataCourse["studentID"] = id;
+	dataCourse["schoolAttending"] = $("#schoolAttending").val();
+	dataCourse["programType"] = $("#programType").val();
+	dataCourse["programNumber"] = $("#programNumber").val();
+	dataCourse["licenseNum"] = $("#licenseNum").val();
+	dataCourse["segOneSchool"] = $("#segOneSchool").val();
+	dataCourse["permitDate"] = $("#permitDate").val();
+	dataCourse["inputHours"] = $("#inputHours").val();
 
 	$.ajax({
 		type : "POST",
 		contentType : "application/json",
 		url : "courseInfoFormSubmit.htm",
-		data : JSON.stringify(data),
+		data : JSON.stringify(dataCourse),
 		dataType : 'json',
 		timeout : 600000,
 		success : function(data) {
@@ -247,21 +258,32 @@ function submitCourseInfo(){
 	});
 }
 
+function getCourseInfo(){
+	
+	
+	$("#schoolAttending").val(dataCourse["schoolAttending"]);
+	$("#programType").val(dataCourse["programType"]);
+	$("#programNumber").val(dataCourse["programNumber"]);
+	$("#licenseNum").val(dataCourse["licenseNum"]);
+	$("#segOneSchool").val(dataCourse["segOneSchool"]);
+	$("#permitDate").val(dataCourse["permitDate"]);
+	$("#inputHours").val(dataCourse["inputHours"]);
+}
+
 function submitMedicalInfo(){
 	console.log("we are in the medical form")
-	var data = {}
-	data["studentID"] = id;
-	data["accommodations"] = $("#accommodations").val();
-	data["medication"] = $("#medication").val();
-	data["disability"] = $("#disability").val();
-	data["seizure"] = $("#seizure").val();
-	data["driveStatus"] = $("#driveStatus").val();
+	dataMed["studentID"] = id;
+	dataMed["accommodations"] = $("#accommodations").val();
+	dataMed["medication"] = $("#medication").val();
+	dataMed["disability"] = $("#disability").val();
+	dataMed["seizure"] = $("#seizure").val();
+	dataMed["driveStatus"] = $("#driveStatus").val();
 
 	$.ajax({
 		type : "POST",
 		contentType : "application/json",
 		url : "medicalInfoFormSubmit.htm",
-		data : JSON.stringify(data),
+		data : JSON.stringify(dataMed),
 		dataType : 'json',
 		timeout : 600000,
 		success : function(data) {
@@ -273,25 +295,33 @@ function submitMedicalInfo(){
 	});
 }
 
+function getMedicalInfo(){
+	$("#accommodations").val(dataMed["accommodations"]);
+	$("#medication").val(dataMed["medication"]);
+	$("#disability").val(dataMed["disability"]);
+	$("#seizure").val(dataMed["seizure"]);
+	$("#driveStatus").val(dataMed["driveStatus"]);
+
+}
+
 
 function submitGuardianInfo(){
 	console.log("we are in the guardian form")
-	var data = {}
-	data["studentID"] = id;
-	data["marketing"] = $("#marketing").val();
-	data["guardianName"] = $("#guardianName").val();
-	data["guardianAddress"] = $("#guardianAddress").val();
-	data["guardianApt"] = $("#guardianApt").val();
-	data["guardianCity"] = $("#guardianCity").val();
-	data["guardianState"] = $("#guardianState").val();
-	data["guardianZip"] = $("#guardianZip").val();
-	data["guardianPhone"] = $("#guardianPhone").val();
+	dataGuard["studentID"] = id;
+	dataGuard["marketing"] = $("#marketing").val();
+	dataGuard["guardianName"] = $("#guardianName").val();
+	dataGuard["guardianAddress"] = $("#guardianAddress").val();
+	dataGuard["guardianApt"] = $("#guardianApt").val();
+	dataGuard["guardianCity"] = $("#guardianCity").val();
+	dataGuard["guardianState"] = $("#guardianState").val();
+	dataGuard["guardianZip"] = $("#guardianZip").val();
+	dataGuard["guardianPhone"] = $("#guardianPhone").val();
 
 	$.ajax({
 		type : "POST",
 		contentType : "application/json",
 		url : "guardianFormSubmit.htm",
-		data : JSON.stringify(data),
+		data : JSON.stringify(dataGuard),
 		dataType : 'json',
 		timeout : 600000,
 		success : function(data) {
@@ -305,5 +335,36 @@ function submitGuardianInfo(){
 	 window.location = 'http://localhost:8080/Polyservice/dashboard';
 }
 
+function getGuardianInfo() {
+	$("#marketing").val(dataGuard["marketing"]);
+	$("#guardianName").val(dataGuard["guardianName"]);
+	$("#guardianAddress").val(dataGuard["guardianAddress"]);
+	$("#guardianApt").val(dataGuard["guardianApt"]);
+	$("#guardianCity").val(dataGuard["guardianCity"]);
+	$("#guardianState").val(dataGuard["guardianState"]);
+	$("#guardianZip").val(dataGuard["guardianZip"]);
+	$("#guardianPhone").val(dataGuard["guardianPhone"]);
+}
+
+function studentInfoFormRetrieve(){
+	console.log("we are in the get student info form")
+	var data = {}
+	data["studentID"] = id;
+
+	$.ajax({
+		type : "POST",
+		contentType : "application/json",
+		url : "getStudentInfo.htm",
+		data : JSON.stringify(data),
+		dataType : 'json',
+		timeout : 600000,
+		success : function(data) {
+			console.log('something went right!!');
+		},
+		error : function(e) {
+			console.log('there definitely was an error' + e);
+		}
+	});
+}
 
 

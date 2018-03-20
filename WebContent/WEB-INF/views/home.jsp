@@ -13,6 +13,7 @@
 
 <title>Home</title>
 
+
 <!-- Bootstrap core CSS -->
 <link href="resources/css/bootstrap.min.css" rel="stylesheet">
 
@@ -23,11 +24,6 @@
 
 <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
 <script src="resources/js/config.js"></script>
-
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
-	integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
-	crossorigin="anonymous">
 
 <script async defer
 	src="https://maps.googleapis.com/maps/api/js?key=${google_key}&callback=initMap">
@@ -44,7 +40,13 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
 	integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
 	crossorigin="anonymous"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+	integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+	crossorigin="anonymous">
 
+<script defer
+	src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 
 </head>
 <body>
@@ -88,16 +90,13 @@
 						</div></li>
 					<li id="loginLi" class="nav-item dropdown"><a href="#"
 						class="nav-link dropdown-toggle" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false">Log In <span
+						aria-haspopup="true" aria-expanded="false"><i class="fas fa-sign-in-alt"></i> Log In <span
 							class="caret"></span>
 					</a>
 						<ul class="dropdown-menu dropdown-menu-right dropdown-lr"
 							role="menu">
 							<div class="col-lg-12">
 								<div class="text-center">
-									<h3>
-										<b>Log In</b>
-									</h3>
 								</div>
 								<form id="ajax-login-form" action="#" role="form"
 									autocomplete="off">
@@ -151,8 +150,11 @@
 								</form>
 							</div>
 						</ul></li>
+
 					<li id="logoutLi" class="nav-item"><a class="nav-link"
-						id="btnLogout" href="#">Log Out</a></li>
+						id="btnLogout"> <i class="fas fa-sign-out-alt"></i>Logout
+					</a></li>
+					
 				</ul>
 			</div>
 		</div>
@@ -290,8 +292,8 @@
 		</div>
 		<!-- /.container -->
 	</footer>
-	
-<script src="resources/js/home.js"></script>
+
+	<script src="resources/js/home.js"></script>
 
 </body>
 </html>

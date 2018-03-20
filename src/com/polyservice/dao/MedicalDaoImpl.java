@@ -1,17 +1,11 @@
-/**
- * 
- */
 package com.polyservice.dao;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 
 import com.polyservice.dto.CourseSelectionDto;
@@ -20,109 +14,92 @@ import com.polyservice.dto.MedicalHistoryDto;
 import com.polyservice.dto.StudentInfoDto;
 import com.polyservice.util.HibernateUtility;
 
-/**
- * @author Manu
- *
- */
-public class UserDaoImpl implements Dao{
-	
+public class MedicalDaoImpl implements Dao {
+
 	private static SessionFactory sessionFactory;
-	
-	public UserDaoImpl() {
+
+	public MedicalDaoImpl() {
 		sessionFactory = HibernateUtility.getSessionFactory();
+
 	}
 
 	@Override
-	public void insertUser(StudentInfoDto newUser) {
-	
+	public void insertMedicalInfo(MedicalHistoryDto medicalInfo) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
-		session.save(newUser);
+		session.save(medicalInfo);
 		tx.commit();
 		session.close();
+
 	}
 
 	@Override
-	public void updateUser(StudentInfoDto newUser) {
-	
+	public void updateMedicalInfo(MedicalHistoryDto medicalInfo) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
-		session.update(newUser);
+		session.update(medicalInfo);
 		tx.commit();
 		session.close();
+
 	}
 
-
 	@Override
-	public StudentInfoDto getUserInfo(String userId) {
-		
-		System.out.println("(UserDaoImpl)The user ID we are using to match with is " + userId);
-		
-		Session session = sessionFactory.openSession();
-		Transaction tx = session.beginTransaction();
-		Criteria crit = session.createCriteria(StudentInfoDto.class);
-		crit.add(Restrictions.like("studentID", userId));
-		ArrayList<StudentInfoDto> list = (ArrayList<StudentInfoDto>) crit.list();
-		
-		StudentInfoDto user = (StudentInfoDto) list.get(0);
-		tx.commit();
-		session.close();
-		return user;
-	}
-	
-	@Override
-	public boolean userRegistrationCheck(String userId) {
+	public boolean medicalRegistrationCheck(String userId) {
 		boolean result = false;
-		
-		System.out.println("(UserDaoImpl)The user ID we are using to match with to see if the current user has basic info already in MySQL is " + userId);
-		
+
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
-		Criteria crit = session.createCriteria(StudentInfoDto.class);
+		Criteria crit = session.createCriteria(MedicalHistoryDto.class);
 		crit.add(Restrictions.like("studentID", userId));
-		ArrayList<StudentInfoDto> list = (ArrayList<StudentInfoDto>) crit.list();
-		
+		ArrayList<MedicalHistoryDto> list = (ArrayList<MedicalHistoryDto>) crit.list();
+
 		if (list.size() > 0) {
 			result = true;
-		} 
-		
+		}
+
 		tx.commit();
 		session.close();
 		return result;
 	}
 
 	@Override
-	public void insertCourseInfo(CourseSelectionDto courseInfo) {
+	public void insertUser(StudentInfoDto newUser) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
-	public void updateCourseInfo(CourseSelectionDto courseInfo) {
+	public StudentInfoDto getUserInfo(String userId) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
 	@Override
-	public boolean courseRegistrationCheck(String userId) {
+	public void updateUser(StudentInfoDto newUser) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public boolean userRegistrationCheck(String userId) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public void insertMedicalInfo(MedicalHistoryDto medicalInfo) {
+	public void insertCourseInfo(CourseSelectionDto courseInfo) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
-	public void updateMedicalInfo(MedicalHistoryDto medicalInfo) {
+	public void updateCourseInfo(CourseSelectionDto courseInfo) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
-	public boolean medicalRegistrationCheck(String userId) {
+	public boolean courseRegistrationCheck(String userId) {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -144,9 +121,5 @@ public class UserDaoImpl implements Dao{
 		// TODO Auto-generated method stub
 		return false;
 	}
+
 }
-
-	
-
-
-	

@@ -14,50 +14,49 @@ import com.polyservice.dto.MedicalHistoryDto;
 import com.polyservice.dto.StudentInfoDto;
 import com.polyservice.util.HibernateUtility;
 
-public class CourseDaoImpl implements Dao {
+public class GuardianDaoImpl implements Dao {
 
 	private static SessionFactory sessionFactory;
 
-	public CourseDaoImpl() {
+	public GuardianDaoImpl() {
 		sessionFactory = HibernateUtility.getSessionFactory();
 
 	}
-	
+
 	@Override
-	public void insertCourseInfo(CourseSelectionDto courseInfo) {
-	
+	public void insertGuardianInfo(GuardianInfoDto guardianInfo) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
-		session.save(courseInfo);
+		session.save(guardianInfo);
 		tx.commit();
 		session.close();
+
 	}
-	
+
 	@Override
-	public void updateCourseInfo(CourseSelectionDto courseInfo) {
-		
+	public void updateGuardianInfo(GuardianInfoDto guardianInfo) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
-		session.update(courseInfo);
+		session.update(guardianInfo);
 		tx.commit();
 		session.close();
-		
+
 	}
-	
+
 	@Override
-	public boolean courseRegistrationCheck(String userId) {
+	public boolean guardianRegistrationCheck(String userId) {
 		boolean result = false;
-		
+
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
-		Criteria crit = session.createCriteria(CourseSelectionDto.class);
+		Criteria crit = session.createCriteria(GuardianInfoDto.class);
 		crit.add(Restrictions.like("studentID", userId));
-		ArrayList<CourseSelectionDto> list = (ArrayList<CourseSelectionDto>) crit.list();
-		
+		ArrayList<GuardianInfoDto> list = (ArrayList<GuardianInfoDto>) crit.list();
+
 		if (list.size() > 0) {
 			result = true;
-		} 
-		
+		}
+
 		tx.commit();
 		session.close();
 		return result;
@@ -66,7 +65,7 @@ public class CourseDaoImpl implements Dao {
 	@Override
 	public void insertUser(StudentInfoDto newUser) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -78,7 +77,7 @@ public class CourseDaoImpl implements Dao {
 	@Override
 	public void updateUser(StudentInfoDto newUser) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -88,37 +87,37 @@ public class CourseDaoImpl implements Dao {
 	}
 
 	@Override
-	public void insertMedicalInfo(MedicalHistoryDto medicalInfo) {
+	public void insertCourseInfo(CourseSelectionDto courseInfo) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
-	public void updateMedicalInfo(MedicalHistoryDto medicalInfo) {
+	public void updateCourseInfo(CourseSelectionDto courseInfo) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
-	public boolean medicalRegistrationCheck(String userId) {
+	public boolean courseRegistrationCheck(String userId) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public void insertGuardianInfo(GuardianInfoDto medicalInfo) {
+	public void insertMedicalInfo(MedicalHistoryDto medicalInfo) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
-	public void updateGuardianInfo(GuardianInfoDto medicalInfo) {
+	public void updateMedicalInfo(MedicalHistoryDto medicalInfo) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
-	public boolean guardianRegistrationCheck(String userId) {
+	public boolean medicalRegistrationCheck(String userId) {
 		// TODO Auto-generated method stub
 		return false;
 	}

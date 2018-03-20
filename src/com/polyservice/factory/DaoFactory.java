@@ -3,8 +3,11 @@
  */
 package com.polyservice.factory;
 
+import com.polyservice.dao.CourseDaoImpl;
+import com.polyservice.dao.Dao;
+import com.polyservice.dao.GuardianDaoImpl;
+import com.polyservice.dao.MedicalDaoImpl;
 import com.polyservice.dao.UserDaoImpl;
-import com.polyservice.dao.UsersDao;
 
 /**
  * @author Manu
@@ -14,20 +17,31 @@ public class DaoFactory {
 
 	public static final String USERSDAO = "userdao";
 	public static final String COURSEDAO = "coursedao";
+	public static final String MEDICALDAO = "medicaldao";
+	public static final String GUARDIANDAO = "guardiandao";
+	
+	public static Dao getInstance(String type) {
 
-	public static UsersDao getInstance(String type) {
-
-		UserDaoImpl daoimpl = null;
+		Dao daoSelection = null;
 
 		switch (type) {
 
 		case USERSDAO:
-			daoimpl = new UserDaoImpl();
+			daoSelection = new UserDaoImpl();
+			break;
+		case COURSEDAO:
+			daoSelection = new CourseDaoImpl();
+			break;
+		case MEDICALDAO:
+			daoSelection = new MedicalDaoImpl();
+			break;
+		case GUARDIANDAO:
+			daoSelection = new GuardianDaoImpl();
 			break;
 		default:
 			break;
 		}
-		return daoimpl;
+		return daoSelection;
 	}
 
 

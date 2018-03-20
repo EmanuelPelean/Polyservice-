@@ -24,7 +24,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.polyservice.dao.UsersDao;
 import com.polyservice.dto.CourseSelectionDto;
 import com.polyservice.dto.GuardianInfoDto;
 import com.polyservice.dto.MedicalHistoryDto;
@@ -79,7 +78,7 @@ public class HomeController {
 
 	
 	@RequestMapping({ "/registration" })
-	public String studentRegistration(Model model) {
+	public ModelAndView studentRegistration(Model model) {
 		
 				
 				// Use this to set user id as time stamp, just for development
@@ -96,7 +95,7 @@ public class HomeController {
 				model.addAttribute("time", currentTimestamp);
 				
 
-		return "registration";
+		return new ModelAndView("registration", "command", new GuardianInfoDto());
 	}
 
 	// this is called when the user clicks to submit form data
@@ -115,8 +114,8 @@ public class HomeController {
 
 //		newUser.setCurrentDate(currentTimestamp.toString());
 //		newUser.setUserID(0);
-		UsersDao dao = DaoFactory.getInstance(DaoFactory.USERSDAO);
-		dao.insertUser(newUser);
+//		UsersDao dao = DaoFactory.getInstance(DaoFactory.USERSDAO);
+//		dao.insertUser(newUser);
 
 		return "dashboard";
 
@@ -220,52 +219,6 @@ public class HomeController {
 
 		return new ModelAndView("home", "", "");
 	}
-	
-	
-	//TODO Add these to a REST Controller
-	
-	@RequestMapping(value = "studentInfoFormSubmit", method = RequestMethod.POST)
-    public String submitStudentInfo(@RequestBody StudentInfoDto studentInfoForm) {
-		
-		System.out.println(studentInfoForm.toString());
-		
-		//Push the current student information form data to MySQL via hibernate
-		UsersDao dao = DaoFactory.getInstance(DaoFactory.USERSDAO);
-		dao.insertUser(studentInfoForm);
-		
-		return "registration";
-    }
-	
-	@RequestMapping(value = "studentInfoFormRetrieve", method = RequestMethod.POST)
-    public String retrieveStudentInfo(@RequestBody StudentInfoDto studentInfoForm) {
-		
-		//Push the current student information form data to MySQL via hibernate
-		UsersDao dao = DaoFactory.getInstance(DaoFactory.USERSDAO);
-		
-		StudentInfoDto user = dao.getUserInfo(studentInfoForm.getStudentID());
-		System.out.println("The returned user is: " + user);
-		
-		return "registration";
-    }
-	
-	
-	
-	@RequestMapping(value = "courseInfoFormSubmit", method = RequestMethod.POST)
-    public String submitCourseInfo(@RequestBody CourseSelectionDto courseInfoForm) {
-		
-		System.out.println(courseInfoForm.toString());
-		
-		return "registration";
-    }
-	
-	@RequestMapping(value = "medicalInfoFormSubmit", method = RequestMethod.POST)
-    public String submitMedicalInfo(@RequestBody MedicalHistoryDto medicalInfoForm) {
-		
-		System.out.println(medicalInfoForm.toString());
-		
-		return "registration";
-    }
-	
 	
 	
 }

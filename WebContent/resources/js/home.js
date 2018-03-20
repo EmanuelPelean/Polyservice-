@@ -1,4 +1,19 @@
 (function() {
+	
+	var polyservice = {
+			lat : 42.609039,
+			lng : -83.03248050000002
+		};
+		var map = new google.maps.Map(document.getElementById('map'), {
+			zoom : 17,
+			center : polyservice
+		});
+		
+		var marker = new google.maps.Marker({
+			position : polyservice,
+			map : map
+			
+		});
  
 	// Get Elements
 	  const txtEmail = document.getElementById('username');
@@ -44,23 +59,6 @@
   });
   
   }());
-
-function initMap() {
-	var polyservice = {
-		lat : 42.609039,
-		lng : -83.03248050000002
-	};
-	var map = new google.maps.Map(document.getElementById('map'), {
-		zoom : 17,
-		center : polyservice
-	});
-	
-	var marker = new google.maps.Marker({
-		position : polyservice,
-		map : map
-		
-	});
-}
 
 
 	

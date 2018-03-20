@@ -125,7 +125,7 @@
 		<div id="step2" style="display: none">
 
 			<form class="ui studentInfoForm" id="studentRegistrationForm"
-				onsubmit="pbar2.nextStep()">
+				onsubmit="pbar2.nextStep(); getCourseInfo();">
 
 				<!-- Registration Form -->
 				<div class="row">
@@ -141,10 +141,11 @@
 									<div class="col-lg-4">
 										<div class="control-group form-group">
 											<div class="controls">
-												<label>First Name:</label> <input id="firstName"
+												<label>First Name: ${name}
+													</input></label> <input id="firstName"
 													class="form-control" name="firstName" type="text"
-													required="required"
-													data-validation-required-message="Please enter your name."></input>
+													required="required" value="${resultDto.firstName}"
+													></input>
 												<div class="invalid-feedback">Please provide a valid
 													name.</div>
 											</div>
@@ -357,8 +358,8 @@
 										<div class="control-group form-group">
 											<div id="stepBtns" class="controls">
 												<input id="nextBtn-studentInfo"
-													onclick="submitStudentInfo(); updateUserFB();" type="submit" value="Next"
-													class="btn btn-primary">
+													onclick="submitStudentInfo(); updateUserFB();"
+													type="submit" value="Next" class="btn btn-primary">
 											</div>
 										</div>
 									</div>
@@ -377,7 +378,7 @@
 
 		<div id="step3" style="display: none">
 			<form class="ui courseInfoForm" id="courseInformationForm"
-				onsubmit="pbar2.nextStep()">
+				onsubmit="pbar2.nextStep(); getMedicalInfo();">
 
 				<!-- Course Info Form -->
 				<div class="row">
@@ -576,8 +577,9 @@
 									<div class="control-group form-group">
 										<div id="stepBtns" class="controls">
 											<input id="previousBtn" type="button" value="Previous"
-												onclick="pbar2.prevStep();" class="btn btn-primary">
-											<input id="nextBtn" onclick="submitCourseInfo(); addStudentToCourse();"
+												onclick="pbar2.prevStep(); studentInfoFormRetrieve(); getStudentInfo();"
+												class="btn btn-primary"> <input id="nextBtn"
+												onclick="submitCourseInfo(); addStudentToCourse();"
 												type="submit" value="Next" class="btn btn-primary">
 										</div>
 									</div>
@@ -709,8 +711,8 @@
 									<div class="control-group form-group">
 										<div id="stepBtns" class="controls">
 											<input id="previousBtn" type="button" value="Previous"
-												onclick="pbar2.prevStep();" class="btn btn-primary">
-											<input id="nextBtn" onclick="submitMedicalInfo()"
+												onclick="pbar2.prevStep(); getCourseInfo();" class="btn btn-primary">
+											<input id="nextBtn" onclick="submitMedicalInfo(); "
 												type="submit" value="Next" class="btn btn-primary">
 										</div>
 									</div>
@@ -724,8 +726,10 @@
 
 		</div>
 		<div id="step5" style="display: none">
-			<form class="ui guardianInfoForm" id="guardianInformationForm"
-				onsubmit="submitMedicalInfo()">
+			<form:form action="submitGuardianInfo" method="post" model="command"
+			 class="ui guardianInfoForm" id="guardianInformationForm">
+			 
+			 	<form:input id="studentUserId" path="studentID" type="hidden"></form:input>
 
 				<!-- Guardian Info Form -->
 				<div class="row">
@@ -742,8 +746,8 @@
 										<div class="control-group form-group">
 											<div class="controls">
 												<label>How did you find out about us?</label>
-												<textarea rows="2" cols="100" class="form-control"
-													id="marketing" maxlength="999" style="resize: none"></textarea>
+												<form:textarea rows="2" cols="100" class="form-control"
+													id="marketing" path="marketing" maxlength="999" style="resize: none"></form:textarea>
 											</div>
 										</div>
 									</div>
@@ -753,10 +757,10 @@
 									<div class="col-lg-4">
 										<div class="control-group form-group">
 											<div class="controls">
-												<label>Parent/Guardian Full Name:</label> <input
-													id="guardianName" class="form-control" name="guardianName"
+												<label>Parent/Guardian Full Name:</label> <form:input
+													id="guardianName" path="guardianName" class="form-control" name="guardianName"
 													type="text" required="required"
-													data-validation-required-message="Please enter a valid name."></input>
+													data-validation-required-message="Please enter a valid name."></form:input>
 												<p class="help-block"></p>
 											</div>
 										</div>
@@ -780,10 +784,10 @@
 									<div class="col-lg-4">
 										<div class="control-group form-group">
 											<div class="controls">
-												<label>Street Address:</label> <input id="guardianAddress"
+												<label>Street Address:</label> <form:input id="guardianAddress" path="guardianAddress"
 													class="form-control" name="guardianAddress" type="text"
 													required="required"
-													data-validation-required-message="Please enter your street address."></input>
+													data-validation-required-message="Please enter your street address."></form:input>
 												<p class="help-block"></p>
 											</div>
 										</div>
@@ -792,8 +796,8 @@
 									<div class="col-lg-4">
 										<div class="control-group form-group">
 											<div class="controls">
-												<label>Apt #:</label> <input id="guardianApt"
-													class="form-control" name="guardianApt" type="text"></input>
+												<label>Apt #:</label> <form:input id="guardianApt" path="guardianApt"
+													class="form-control" name="guardianApt" type="text"></form:input>
 												<p class="help-block"></p>
 											</div>
 										</div>
@@ -804,10 +808,10 @@
 									<div class="col-lg-4">
 										<div class="control-group form-group">
 											<div class="controls">
-												<label>City:</label> <input id="guardianCity"
+												<label>City:</label> <form:input id="guardianCity" path="guardianCity"
 													class="form-control" name="guardianCity" type="text"
 													required="required"
-													data-validation-required-message="Please enter your city."></input>
+													data-validation-required-message="Please enter your city."></form:input>
 												<p class="help-block"></p>
 											</div>
 										</div>
@@ -815,7 +819,7 @@
 									<div class="col-lg-3">
 										<div class="control-group form-group">
 											<div class="controls">
-												<label>State:</label> <select id="guardianState"
+												<label>State:</label> <form:select id="guardianState" path="guardianState"
 													class="form-control" name="guardianState"
 													required="required"
 													data-validation-required-message="Please select your state.">
@@ -870,7 +874,7 @@
 													<option value="WV">West Virginia</option>
 													<option value="WI">Wisconsin</option>
 													<option value="WY">Wyoming</option>
-												</select>
+												</form:select>
 												<p class="help-block"></p>
 											</div>
 										</div>
@@ -878,10 +882,10 @@
 									<div class="col-lg-2">
 										<div class="control-group form-group">
 											<div class="controls">
-												<label>Zip Code:</label> <input id="guardianZip"
+												<label>Zip Code:</label> <form:input id="guardianZip" path="guardianZip"
 													class="form-control" name="guardianZip" type="text"
 													maxlength="5" required="required"
-													data-validation-required-message="Please enter your zip code."></input>
+													data-validation-required-message="Please enter your zip code."></form:input>
 												<p class="help-block"></p>
 											</div>
 										</div>
@@ -891,12 +895,12 @@
 									<div class="col-lg-4">
 										<div class="control-group form-group">
 											<div class="controls">
-												<label>Parent/Guardian Phone#:</label> <input
-													id="guardianPhone"
+												<label>Parent/Guardian Phone#:</label> <form:input
+													id="guardianPhone" path="guardianPhone"
 													class="form-control input-medium bfh-phone"
 													data-format="+1 (ddd) ddd-dddd" name="guardianPhone"
 													type="text" required="required"
-													data-validation-required-message="Please enter your home phone number."></input>
+													data-validation-required-message="Please enter your home phone number."></form:input>
 												<p class="help-block"></p>
 
 
@@ -910,9 +914,9 @@
 									<div class="control-group form-group">
 										<div id="stepBtns" class="controls">
 											<input id="previousBtn" type="button" value="Previous"
-												onclick="pbar2.prevStep();" class="btn btn-primary">
-											<input id="sumbitBtn" onclick="submitGuardianInfo()"
-												type="button" value="Submit Info" class="btn btn-primary">
+												onclick="pbar2.prevStep(); getMedicalInfo();" class="btn btn-primary">
+											<input id="sumbitBtn"
+												type="submit" value="Submit Info" class="btn btn-primary">
 										</div>
 									</div>
 								</div>
@@ -923,7 +927,7 @@
 				</div>
 
 				<!-- /.row -->
-			</form>
+			</form:form>
 
 		</div>
 
@@ -931,7 +935,7 @@
 	<!-- /.container -->
 
 
-	<input type="button" onclick="testMe()" value="test">
+
 
 
 	<script src="resources/js/registration.js"></script>
