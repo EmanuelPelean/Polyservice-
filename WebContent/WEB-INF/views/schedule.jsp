@@ -1,102 +1,102 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="">
-<meta name="author" content="">
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+          <meta name="author" content="">
 
-<title>Polyservice Schedule</title>
+            <!-- Favicon data -->
+            <link rel="apple-touch-icon" sizes="180x180" href="resources/favicon/apple-touch-icon.png">
+              <link rel="icon" type="image/png" sizes="32x32" href="resources/favicon/favicon-32x32.png">
+                <link rel="icon" type="image/png" sizes="16x16" href="resources/favicon/favicon-16x16.png">
+                  <link rel="manifest" href="resources/favicon/site.webmanifest">
+                    <link rel="mask-icon" href="resources/favicon/safari-pinned-tab.svg" color="#5bbad5">
+                      <meta name="msapplication-TileColor" content="#da532c">
+                        <meta name="theme-color" content="#ffffff">
+                          <title>Polyservice Schedule</title>
 
-<!-- Bootstrap core CSS -->
-<link href="resources/css/bootstrap.min.css" rel="stylesheet">
+                          <!-- Bootstrap core CSS -->
+                          <link href="resources/css/bootstrap.min.css" rel="stylesheet">
 
-<!-- Custom styles for this template -->
-<link href="resources/css/modern-business.css" rel="stylesheet">
+                            <!-- Custom styles for this template -->
+                            <link href="resources/css/modern-business.css" rel="stylesheet">
 
-<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
-<link href="resources/css/schedule.css" type="text/css" rel="stylesheet">
-<link
-	href="http://fonts.googleapis.com/css?
-		family=Reenie+Beanie:regular"
-	rel="stylesheet" type="text/css">
-</head>
-<body>
+                              <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+                              <link href="resources/css/schedule.css" type="text/css" rel="stylesheet">
+                                <link href="http://fonts.googleapis.com/css?
+		family=Reenie+Beanie:regular" rel="stylesheet" type="text/css"></head>
+                                <body>
 
-	<!-- Navigation -->
-	<nav
-		class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
-		<div class="container">
-			<a class="navbar-brand" href="home">Polyservice Driving School</a>
-			<button class="navbar-toggler navbar-toggler-right" type="button"
-				data-toggle="collapse" data-target="#navbarResponsive"
-				aria-controls="navbarResponsive" aria-expanded="false"
-				aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarResponsive">
-				<ul class="navbar-nav ml-auto">
-					<li class="nav-item"><a class="nav-link" href="#">About</a>
-					</li>
-					<li class="nav-item"><a class="nav-link" href="#">Services</a>
-					</li>
-					<li class="nav-item"><a class="nav-link" href="#">Location</a>
-					</li>
-					<li class="nav-item"><a class="nav-link" href="#">Contact</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</nav>
-	
-	<!-- Page Content -->
-	<div class="container">
+                                  <!-- Navigation -->
+                                  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+                                    <div class="container">
+                                      <a class="navbar-brand" href="home">Polyservice Driving School</a>
+                                      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                                        <span class="navbar-toggler-icon"></span>
+                                      </button>
+                                      <div class="collapse navbar-collapse" id="navbarResponsive">
+                                        <ul class="navbar-nav ml-auto">
+                                          <li class="nav-item">
+                                            <a class="nav-link" href="#">About</a>
+                                          </li>
+                                          <li class="nav-item">
+                                            <a class="nav-link" href="#">Services</a>
+                                          </li>
+                                          <li class="nav-item">
+                                            <a class="nav-link" href="#">Location</a>
+                                          </li>
+                                          <li class="nav-item">
+                                            <a class="nav-link" href="#">Contact</a>
+                                          </li>
+                                        </ul>
+                                      </div>
+                                    </div>
+                                  </nav>
 
-		<!-- Page Heading/Breadcrumbs -->
-		<h1 class="mt-4 mb-3">
-			Academic Calendar
-		</h1>
+                                  <!-- Page Content -->
+                                  <div class="container">
 
-		<ol class="breadcrumb">
-			<li class="breadcrumb-item active"><b>Segment 1 Courses</b> (Click on a course to zoom in.)</li>
-		</ol>
+                                    <!-- Page Heading/Breadcrumbs -->
+                                    <h1 class="mt-4 mb-3">
+                                      Academic Calendar
+                                    </h1>
 
-	</div>
-	<!-- /.container -->
+                                    <ol class="breadcrumb">
+                                      <li class="breadcrumb-item active">
+                                        <b>Segment 1 Courses</b>
+                                        (Click on a course to zoom in.)</li>
+                                    </ol>
 
-	<ul id="list" class="ul-custom">
+                                  </div>
+                                  <!-- /.container -->
 
-	</ul>
-	
-	<!-- Page Content -->
-	<div class="container">
+                                  <ul id="list" class="ul-custom"></ul>
 
-		<ol class="breadcrumb">
-			<li class="breadcrumb-item active"><b>Segment 2 Courses</b> (Click on a course to zoom in.)</li>
-		</ol>
+                                  <!-- Page Content -->
+                                  <div class="container">
 
-	</div>
-	<!-- /.container -->
-	
-	
-	<ul id="list2" class="ul-custom">
+                                    <ol class="breadcrumb">
+                                      <li class="breadcrumb-item active">
+                                        <b>Segment 2 Courses</b>
+                                        (Click on a course to zoom in.)</li>
+                                    </ol>
 
-	</ul>
+                                  </div>
+                                  <!-- /.container -->
 
-	<!-- Footer -->
-	<footer class="py-5 bg-dark">
-		<div class="container">
-			<p class="m-0 text-center text-white">Copyright &copy; Polyservice Inc. 2018</p>
-		</div>
-		<!-- /.container -->
-	</footer>
+                                  <ul id="list2" class="ul-custom"></ul>
 
+                                  <!-- Footer -->
+                                  <footer class="py-5 bg-dark">
+                                    <div class="container">
+                                      <p class="m-0 text-center text-white">Copyright &copy; Polyservice Inc. 2018</p>
+                                    </div>
+                                    <!-- /.container -->
+                                  </footer>
 
-
-
-	<script src="resources/js/config.js"></script>
-	<script src="resources/js/schedule.js"></script>
-</body>
-</html>
+                                  <script src="resources/js/config.js"></script>
+                                  <script src="resources/js/schedule.js"></script>
+                                </body>
+                              </html>

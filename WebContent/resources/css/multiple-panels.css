@@ -1,87 +1,67 @@
 body {
-	width: 60%;
-	margin: 0 auto;
-	padding-top: 20px;
+  width: 80%;
+  margin: 0 auto;
+  padding-top: 20px;
 }
 
 p.divider {
-	border-bottom: 2px dashed #DDD;
-	margin: 70px;
+  border-bottom: 2px dashed #DDD;
+  margin: 70px;
 }
 
 /* ************************* Version #2: The Snake ************************* */
+
 ul.progressbar2 {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	display: inline-block;
-	font-family: Arial, Helvetica, sans-serif;
-	position: relative;
-	counter-reset: steps;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  font-family: Arial, Helvetica, sans-serif;
+  position: relative;
+  counter-reset: steps;
 }
 
 ul.progressbar2 li {
-	float: left;
-	margin: 0 0em;
-	padding: 0.2em 1.5em;
-	counter-increment: steps;
-	font-weight: 700;
-	border-bottom: 2px solid #21A1D2;
-	color: #21A1D2;
-	cursor: default;
+  float: left;
+  margin: 0 1.0em;
+  padding: 0.3em 1em;
+  counter-increment: steps;
+  font-weight: 700;
+  cursor: default;
 }
 
 /* Numbers */
+
 ul.progressbar2 li:before {
-	content: counter(steps);
-	display: inline-block;
-	margin-right: 5px;
-	width: 1em;
-	height: 1.5em;
-	border: 2px solid #21A1D2;
-	border-radius: 1em;
-	text-align: center;
-	line-height: 1.1em;
-}
-
-/* Arrow */
-ul.progressbar2:after {
-	content: "";
-	width: 0px;
-	height: 0px;
-	border: 0.4em solid transparent;
-	border-left: 0.8em solid #21A1D2;
-	vertical-align: baseline;
-	position: absolute;
-	top: 1.4em;
-}
-
-/* Current step */
-ul.progressbar2 li.current {
-	border: 2px solid #21A1D2;
-	border-bottom: none;
-}
-
-ul.progressbar2 li.current:before {
-	content: counter(steps);
-	display: inline-block;
-	background-color: #21A1D2;
-	color: white;
-	text-shadow: 0px -1px 0px #1b91c0;
+  content: counter(steps);
+  text-align: center;
+  line-height: 1.1em;
+  color: #FFF;
+  text-shadow: 0px -1px 0px #1b91c0;
+  display: inline-block;
+  margin-right: 5px;
+  width: 1em;
+  height: 1.3em;
+  border: 2px solid #21A1D2;
+  border-radius: 1em;
+  background-color: #21A1D2;
 }
 
 /* Upcoming steps */
+
 ul.progressbar2 li.todo {
-	color: #B6E0F0;
+  color: #B6E0F0;
 }
 
 ul.progressbar2 li.todo:before {
-	border-color: #B6E0F0;
-	color: #B6E0F0;
-	background: #FFF;
-	text-shadow: none;
+  border-color: #B6E0F0;
+  color: #B6E0F0;
+  background: #FFF;
+  text-shadow: none;
+  /*IE8 doesn't update pseudo elements unless the content changes: */
+  content: "" counter(steps);
 }
 
 #stepBtns {
-	text-align: center;
+  text-align: center;
 }

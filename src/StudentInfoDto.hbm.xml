@@ -1,71 +1,68 @@
 <?xml version = "1.0" encoding = "utf-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC 
-"-//Hibernate/Hibernate Mapping DTD//EN"
-"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<class name="com.polyservice.dto.StudentInfoDto" table="students"
-		schema="polyservice">
+  <class name="com.polyservice.dto.StudentInfoDto" table="students" schema="polyservice">
 
-		<id name="studentID">
-			<column name="userID" sql-type="varchar(50)" length="50"></column>
-		</id>
+    <id name="studentID">
+      <column name="userID" sql-type="varchar(50)" length="50"></column>
+    </id>
 
-		<property name="firstName">
-			<column name="firstName" sql-type="varchar(50)" length="50"></column>
-		</property>
+    <property name="firstName">
+      <column name="firstName" sql-type="varchar(50)" length="50"></column>
+    </property>
 
-		<property name="middleName">
-			<column name="middleName" sql-type="varchar(50)" length="50"></column>
-		</property>
+    <property name="middleName">
+      <column name="middleName" sql-type="varchar(50)" length="50"></column>
+    </property>
 
-		<property name="lastName">
-			<column name="lastName" sql-type="varchar(50)" length="50"></column>
-		</property>
+    <property name="lastName">
+      <column name="lastName" sql-type="varchar(50)" length="50"></column>
+    </property>
 
-		<property name="email">
-			<column name="email" sql-type="varchar(50)" length="50"></column>
-		</property>
-		
-		<property name="gender">
-			<column name="gender" sql-type="varchar(50)" length="50"></column>
-		</property>
-		
-		<property name="address">
-			<column name="address" sql-type="varchar(50)" length="50"></column>
-		</property>
-		
-		<property name="aptNum">
-			<column name="aptNum" sql-type="varchar(50)" length="50"></column>
-		</property>
-		
-		<property name="city">
-			<column name="city" sql-type="varchar(50)" length="50"></column>
-		</property>
-		
-		<property name="state">
-			<column name="state" sql-type="varchar(50)" length="50"></column>
-		</property>
-		
-		<property name="zip">
-			<column name="zip" sql-type="varchar(50)" length="50"></column>
-		</property>
-		
-		<property name="birth_date">
-			<column name="birthDate" sql-type="varchar(50)" length="50"></column>
-		</property>
-		
-		<property name="exact_age">
-			<column name="age" sql-type="varchar(50)" length="50"></column>
-		</property>
-		
-		<property name="phoneHome">
-			<column name="phoneHome" sql-type="varchar(50)" length="50"></column>
-		</property>
-		
-		<property name="phoneStudent">
-			<column name="phoneStudent" sql-type="varchar(50)" length="50"></column>
-		</property>
+    <property name="email">
+      <column name="email" sql-type="varchar(50)" length="50"></column>
+    </property>
 
-	</class>
+    <property name="gender">
+      <column name="gender" sql-type="varchar(50)" length="50"></column>
+    </property>
+
+    <property name="address">
+      <column name="address" sql-type="varchar(50)" length="50"></column>
+    </property>
+
+    <property name="aptNum">
+      <column name="aptNum" sql-type="varchar(50)" length="50"></column>
+    </property>
+
+    <property name="city">
+      <column name="city" sql-type="varchar(50)" length="50"></column>
+    </property>
+
+    <property name="state">
+      <column name="state" sql-type="varchar(50)" length="50"></column>
+    </property>
+
+    <property name="zip">
+      <column name="zip" sql-type="varchar(50)" length="50"></column>
+    </property>
+
+    <property name="birth_date">
+      <column name="birthDate" sql-type="varchar(50)" length="50"></column>
+    </property>
+
+    <property name="exact_age">
+      <column name="age" sql-type="varchar(50)" length="50"></column>
+    </property>
+
+    <property name="phoneHome">
+      <column name="phoneHome" sql-type="varchar(50)" length="50"></column>
+    </property>
+
+    <property name="phoneStudent">
+      <column name="phoneStudent" sql-type="varchar(50)" length="50"></column>
+    </property>
+
+  </class>
 </hibernate-mapping>

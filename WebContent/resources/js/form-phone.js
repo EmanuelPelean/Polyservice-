@@ -17,7 +17,7 @@
  * limitations under the License.
  * ========================================================== */
 
-+function ($) {
++ function($) {
 
   'use strict';
 
@@ -25,7 +25,7 @@
   /* PHONE CLASS DEFINITION
    * ====================== */
 
-  var BFHPhone = function (element, options) {
+  var BFHPhone = function(element, options) {
     this.options = $.extend({}, $.fn.bfhphone.defaults, options);
     this.$element = $(element);
 
@@ -50,18 +50,20 @@
 
         if ($country.length !== 0) {
           this.options.format = BFHPhoneFormatList[$country.val()];
-          $country.on('change', {phone: this}, this.changeCountry);
+          $country.on('change', {
+            phone: this
+          }, this.changeCountry);
         } else {
           this.options.format = BFHPhoneFormatList[this.options.country];
         }
       }
-      
+
       this.$element.on('keyup.bfhphone.data-api', BFHPhone.prototype.change);
 
       this.loadFormatter();
     },
 
-    loadFormatter: function () {
+    loadFormatter: function() {
       var formattedNumber;
 
       formattedNumber = formatNumber(this.options.format, this.$element.val());
@@ -69,7 +71,7 @@
       this.$element.val(formattedNumber);
     },
 
-    displayFormatter: function () {
+    displayFormatter: function() {
       var formattedNumber;
 
       if (this.options.country !== '') {
@@ -81,9 +83,9 @@
       this.$element.html(formattedNumber);
     },
 
-    changeCountry: function (e) {
+    changeCountry: function(e) {
       var $this,
-          $phone;
+        $phone;
 
       $this = $(this);
       $phone = e.data.phone;
@@ -96,9 +98,9 @@
 
     change: function(e) {
       var $this,
-          cursorPosition,
-          cursorEnd,
-          formattedNumber;
+        cursorPosition,
+        cursorEnd,
+        formattedNumber;
 
       $this = $(this).data('bfhphone');
 
@@ -112,17 +114,17 @@
       if (cursorPosition === $this.$element.val().length) {
         cursorEnd = true;
       }
-      
+
       if (e.which === 8 && $this.options.format.charAt($this.$element.val().length) !== 'd') {
         $this.$element.val(String($this.$element.val()).substring(0, $this.$element.val().length - 1));
       }
 
       formattedNumber = formatNumber($this.options.format, $this.$element.val());
-      
+
       if (formattedNumber === $this.$element.val()) {
         return true;
       }
-      
+
       $this.$element.val(formattedNumber);
 
       if (cursorEnd) {
@@ -138,9 +140,9 @@
 
   function formatNumber(format, number) {
     var formattedNumber,
-        indexFormat,
-        indexNumber,
-        lastCharacter;
+      indexFormat,
+      indexNumber,
+      lastCharacter;
 
     formattedNumber = '';
     number = String(number).replace(/\D/g, '');
@@ -166,7 +168,7 @@
         }
       }
     }
-    
+
     lastCharacter = format.charAt(formattedNumber.length);
     if (lastCharacter !== 'd') {
       formattedNumber += lastCharacter;
@@ -177,13 +179,13 @@
 
   function getCursorPosition($element) {
     var position = 0,
-        selection;
+      selection;
 
     if (document.selection) {
       // IE Support
       $element.focus();
       selection = document.selection.createRange();
-      selection.moveStart ('character', -$element.value.length);
+      selection.moveStart('character', -$element.value.length);
       position = selection.text.length;
     } else if ($element.selectionStart || $element.selectionStart === 0) {
       position = $element.selectionStart;
@@ -197,16 +199,16 @@
 
     if (document.selection) {
       // IE Support
-      $element.focus ();
+      $element.focus();
       selection = document.selection.createRange();
-      selection.moveStart ('character', -$element.value.length);
-      selection.moveStart ('character', position);
-      selection.moveEnd ('character', 0);
-      selection.select ();
+      selection.moveStart('character', -$element.value.length);
+      selection.moveStart('character', position);
+      selection.moveEnd('character', 0);
+      selection.select();
     } else if ($element.selectionStart || $element.selectionStart === 0) {
       $element.selectionStart = position;
       $element.selectionEnd = position;
-      $element.focus ();
+      $element.focus();
     }
   }
 
@@ -215,11 +217,11 @@
 
   var old = $.fn.bfhphone;
 
-  $.fn.bfhphone = function (option) {
-    return this.each(function () {
+  $.fn.bfhphone = function(option) {
+    return this.each(function() {
       var $this,
-          data,
-          options;
+        data,
+        options;
 
       $this = $(this);
       data = $this.data('bfhphone');
@@ -246,7 +248,7 @@
   /* PHONE NO CONFLICT
    * ========================== */
 
-  $.fn.bfhphone.noConflict = function () {
+  $.fn.bfhphone.noConflict = function() {
     $.fn.bfhphone = old;
     return this;
   };
@@ -255,15 +257,15 @@
   /* PHONE DATA-API
    * ============== */
 
-  $(document).on('focus', '.bfh-phone', function () {
-	  $('form input[type="text"].bfh-phone, form input[type="tel"].bfh-phone, span.bfh-phone').each(function () {
-	      var $phone;
+  $(document).on('focus', '.bfh-phone', function() {
+    $('form input[type="text"].bfh-phone, form input[type="tel"].bfh-phone, span.bfh-phone').each(function() {
+      var $phone;
 
-	      $phone = $(this);
+      $phone = $(this);
 
-	      $phone.bfhphone($phone.data());
-	    });
-		
-		});
+      $phone.bfhphone($phone.data());
+    });
+
+  });
 
 }(window.jQuery);

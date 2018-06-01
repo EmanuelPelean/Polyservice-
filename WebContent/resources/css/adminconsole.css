@@ -1,8 +1,8 @@
-.scroll-class{
-  height:200px;
+.scroll-class {
+  height: 200px;
   overflow-y: scroll;
 }
 
-.btn-group-courses{
-	float: right;
+.btn-group-courses {
+  float: right;
 }

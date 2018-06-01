@@ -1,47 +1,44 @@
 <?xml version = "1.0" encoding = "utf-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC 
-"-//Hibernate/Hibernate Mapping DTD//EN"
-"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<class name="com.polyservice.dto.GuardianInfoDto" table="guardian_info"
-		schema="polyservice">
+  <class name="com.polyservice.dto.GuardianInfoDto" table="guardian_info" schema="polyservice">
 
-		<id name="studentID">
-			<column name="userID" sql-type="varchar(50)" length="50"></column>
-		</id>
+    <id name="studentID">
+      <column name="userID" sql-type="varchar(50)" length="50"></column>
+    </id>
 
-		<property name="marketing">
-			<column name="marketing" sql-type="TEXT(999)" length="999"></column>
-		</property>
-		
-		<property name="guardianName">
-			<column name="guardianName" sql-type="varchar(50)" length="50"></column>
-		</property>
-		
-		<property name="guardianAddress">
-			<column name="guardianAddress" sql-type="varchar(50)" length="50"></column>
-		</property>
-		
-		<property name="guardianApt">
-			<column name="guardianApt" sql-type="varchar(50)" length="50"></column>
-		</property>
-		
-		<property name="guardianCity">
-			<column name="guardianCity" sql-type="varchar(50)" length="50"></column>
-		</property>
-		
-		<property name="guardianState">
-			<column name="guardianState" sql-type="varchar(50)" length="50"></column>
-		</property>
-		
-		<property name="guardianZip">
-			<column name="guardianZip" sql-type="varchar(50)" length="50"></column>
-		</property>
-		
-		<property name="guardianPhone">
-			<column name="guardianPhone" sql-type="varchar(50)" length="50"></column>
-		</property>
+    <property name="marketing">
+      <column name="marketing" sql-type="TEXT(999)" length="999"></column>
+    </property>
 
-	</class>
+    <property name="guardianName">
+      <column name="guardianName" sql-type="varchar(50)" length="50"></column>
+    </property>
+
+    <property name="guardianAddress">
+      <column name="guardianAddress" sql-type="varchar(50)" length="50"></column>
+    </property>
+
+    <property name="guardianApt">
+      <column name="guardianApt" sql-type="varchar(50)" length="50"></column>
+    </property>
+
+    <property name="guardianCity">
+      <column name="guardianCity" sql-type="varchar(50)" length="50"></column>
+    </property>
+
+    <property name="guardianState">
+      <column name="guardianState" sql-type="varchar(50)" length="50"></column>
+    </property>
+
+    <property name="guardianZip">
+      <column name="guardianZip" sql-type="varchar(50)" length="50"></column>
+    </property>
+
+    <property name="guardianPhone">
+      <column name="guardianPhone" sql-type="varchar(50)" length="50"></column>
+    </property>
+
+  </class>
 </hibernate-mapping>

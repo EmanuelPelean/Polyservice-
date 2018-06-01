@@ -1,35 +1,32 @@
 <?xml version = "1.0" encoding = "utf-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC 
-"-//Hibernate/Hibernate Mapping DTD//EN"
-"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<class name="com.polyservice.dto.MedicalHistoryDto" table="medical_history"
-		schema="polyservice">
+  <class name="com.polyservice.dto.MedicalHistoryDto" table="medical_history" schema="polyservice">
 
-		<id name="studentID">
-			<column name="userID" sql-type="varchar(50)" length="50"></column>
-		</id>
+    <id name="studentID">
+      <column name="userID" sql-type="varchar(50)" length="50"></column>
+    </id>
 
-		<property name="accommodations">
-			<column name="accommodations" sql-type="TEXT(999)" length="999"></column>
-		</property>
-		
-		<property name="medication">
-			<column name="medication" sql-type="TEXT(999)" length="999"></column>
-		</property>
-		
-		<property name="disability">
-			<column name="disability" sql-type="TEXT(999)" length="999"></column>
-		</property>
-		
-		<property name="seizure">
-			<column name="seizure" sql-type="TEXT(999)" length="999"></column>
-		</property>
-		
-		<property name="driveStatus">
-			<column name="driveStatus" sql-type="TEXT(999)" length="999"></column>
-		</property>
+    <property name="accommodations">
+      <column name="accommodations" sql-type="TEXT(999)" length="999"></column>
+    </property>
 
-	</class>
+    <property name="medication">
+      <column name="medication" sql-type="TEXT(999)" length="999"></column>
+    </property>
+
+    <property name="disability">
+      <column name="disability" sql-type="TEXT(999)" length="999"></column>
+    </property>
+
+    <property name="seizure">
+      <column name="seizure" sql-type="TEXT(999)" length="999"></column>
+    </property>
+
+    <property name="driveStatus">
+      <column name="driveStatus" sql-type="TEXT(999)" length="999"></column>
+    </property>
+
+  </class>
 </hibernate-mapping>

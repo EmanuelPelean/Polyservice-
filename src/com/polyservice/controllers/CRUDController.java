@@ -26,16 +26,30 @@ public class CRUDController {
 
 		// Push the current student information form data to MySQL via hibernate
 		Dao dao = DaoFactory.getInstance(DaoFactory.USERSDAO);
+		
+		dao.insertUser(studentInfoForm);
 
-		// A check to see if the current user already has info saved in MySQL
-		boolean result = dao.userRegistrationCheck(studentInfoForm.getStudentID());
-
-		// Based on the check above we can save or update the current user's info
-		if (result == true) {
-			dao.updateUser(studentInfoForm);
-		} else {
-			dao.insertUser(studentInfoForm);
-		}
+//		boolean result = false;
+//		// A check to see if the current user already has info saved in MySQL
+//		try{  
+//			result = dao.userRegistrationCheck(studentInfoForm.getStudentID());
+//			
+//		}catch(IllegalStateException illRef){
+//				
+//			System.out.println("No ID matches found for this user!");
+//			}  
+//
+//		
+//		// Based on the check above we can save or update the current user's info
+//		if (result == true) {
+//			//Debug only
+//			System.out.println("The result when submitting student info should be true, it is : " + result);
+//			dao.updateUser(studentInfoForm);
+//		} else {
+//			//Debug only
+//			System.out.println("The result when submitting student info should be false, it is : " + result);
+//			dao.insertUser(studentInfoForm);
+//		}
 
 		return "registration";
 	}
@@ -50,6 +64,7 @@ public class CRUDController {
 
 		// Push the current student id to MySQL via hibernate and return the user DTO
 		// that matches this id
+		
 		resultDto = dao.getUserInfo(studentInfoForm.getStudentID());
 
 		System.out.println("The returned user is: " + resultDto.toString());
@@ -57,6 +72,8 @@ public class CRUDController {
 
 		return "registration";
 	}
+	
+	
 
 	@RequestMapping(value = "courseInfoFormSubmit", method = RequestMethod.POST)
 	public String submitCourseInfo(@RequestBody CourseSelectionDto courseInfoForm) {
@@ -65,16 +82,18 @@ public class CRUDController {
 
 		// Push the current course information form data to MySQL via hibernate
 		Dao dao = DaoFactory.getInstance(DaoFactory.COURSEDAO);
+		
+		dao.insertCourseInfo(courseInfoForm);
 
-		// A check to see if the current user already has info saved in MySQL
-		boolean result = dao.courseRegistrationCheck(courseInfoForm.getStudentID());
-
-		// Based on the check above we can save or update the current user's info
-		if (result == true) {
-			dao.updateCourseInfo(courseInfoForm);
-		} else {
-			dao.insertCourseInfo(courseInfoForm);
-		}
+//		// A check to see if the current user already has info saved in MySQL
+//		boolean result = dao.courseRegistrationCheck(courseInfoForm.getStudentID());
+//
+//		// Based on the check above we can save or update the current user's info
+//		if (result == true) {
+//			dao.updateCourseInfo(courseInfoForm);
+//		} else {
+//			dao.insertCourseInfo(courseInfoForm);
+//		}
 
 		return "registration";
 	}
@@ -87,40 +106,43 @@ public class CRUDController {
 		// Push the current course information form data to MySQL via hibernate
 		Dao dao = DaoFactory.getInstance(DaoFactory.MEDICALDAO);
 
-		// A check to see if the current user already has info saved in MySQL
-		boolean result = dao.medicalRegistrationCheck(medicalInfoForm.getStudentID());
-
-		// Based on the check above we can save or update the current user's info
-		if (result == true) {
-			dao.updateMedicalInfo(medicalInfoForm);
-			
-		} else {
-			dao.insertMedicalInfo(medicalInfoForm);
-		}
-
-		return "registration";
-	}
-
-	@RequestMapping(value = "guardianFormSubmit", method = RequestMethod.POST)
-	public String submitGuardianInfo(@RequestBody GuardianInfoDto guardianInfoForm) {
-
-		System.out.println(guardianInfoForm.toString());
-
-		// Push the current course information form data to MySQL via hibernate
-		Dao dao = DaoFactory.getInstance(DaoFactory.GUARDIANDAO);
-
-		// A check to see if the current user already has info saved in MySQL
-		boolean result = dao.guardianRegistrationCheck(guardianInfoForm.getStudentID());
-
-		// Based on the check above we can save or update the current user's info
-		if (result == true) {
-			dao.updateGuardianInfo(guardianInfoForm);
-		} else {
-			dao.insertGuardianInfo(guardianInfoForm);
-		}
+		dao.insertMedicalInfo(medicalInfoForm);
+//		// A check to see if the current user already has info saved in MySQL
+//		boolean result = dao.medicalRegistrationCheck(medicalInfoForm.getStudentID());
+//
+//		// Based on the check above we can save or update the current user's info
+//		if (result == true) {
+//			dao.updateMedicalInfo(medicalInfoForm);
+//			
+//		} else {
+//			dao.insertMedicalInfo(medicalInfoForm);
+//		}
 
 		return "registration";
 	}
+
+//	@RequestMapping(value = "guardianFormSubmit", method = RequestMethod.POST)
+//	public String submitGuardianInfo(@RequestBody GuardianInfoDto guardianInfoForm) {
+//
+//		System.out.println(guardianInfoForm.toString());
+//
+//		// Push the current course information form data to MySQL via hibernate
+//		Dao dao = DaoFactory.getInstance(DaoFactory.GUARDIANDAO);
+//		
+//		dao.insertGuardianInfo(guardianInfoForm);
+//
+////		// A check to see if the current user already has info saved in MySQL
+////		boolean result = dao.guardianRegistrationCheck(guardianInfoForm.getStudentID());
+////
+////		// Based on the check above we can save or update the current user's info
+////		if (result == true) {
+////			dao.updateGuardianInfo(guardianInfoForm);
+////		} else {
+////			dao.insertGuardianInfo(guardianInfoForm);
+////		}
+//
+//		return "registration";
+//	}
 	
 	@RequestMapping(value = {"/submitGuardianInfo"}, method = RequestMethod.POST)
 	public String submitGuardInfo(@ModelAttribute("command") GuardianInfoDto guardianInfoForm) {
@@ -129,16 +151,18 @@ public class CRUDController {
 
 		// Push the current course information form data to MySQL via hibernate
 		Dao dao = DaoFactory.getInstance(DaoFactory.GUARDIANDAO);
+		
+		dao.insertGuardianInfo(guardianInfoForm);
 
-		// A check to see if the current user already has info saved in MySQL
-		boolean result = dao.guardianRegistrationCheck(guardianInfoForm.getStudentID());
-
-		// Based on the check above we can save or update the current user's info
-		if (result == true) {
-			dao.updateGuardianInfo(guardianInfoForm);
-		} else {
-			dao.insertGuardianInfo(guardianInfoForm);
-		}
+//		// A check to see if the current user already has info saved in MySQL
+//		boolean result = dao.guardianRegistrationCheck(guardianInfoForm.getStudentID());
+//
+//		// Based on the check above we can save or update the current user's info
+//		if (result == true) {
+//			dao.updateGuardianInfo(guardianInfoForm);
+//		} else {
+//			dao.insertGuardianInfo(guardianInfoForm);
+//		}
 		
 		return "dashboard";
 		
