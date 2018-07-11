@@ -292,11 +292,12 @@ function submitStudentInfo() {
   dataReg["phoneStudent"] = $("#phoneStudent").val();
   dataReg["gender"] = $("input:radio[name ='gender']:checked").val();
 
+  console.log(dataReg);
 
   $.ajax({
     type: "POST",
     contentType: "application/json",
-    url: "studentInfoFormSubmit.htm",
+    url: "studentInfoFormSubmit.html",
     data: JSON.stringify(dataReg),
     dataType: 'json',
     timeout: 600000,
@@ -307,8 +308,7 @@ function submitStudentInfo() {
       console.log('there definitely was an error' + e);
     }
   });
-
-
+  
 }
 
 function getStudentInfo() {
@@ -338,6 +338,8 @@ function submitCourseInfo() {
   dataCourse["permitDate"] = $("#permitDate").val();
   dataCourse["inputHours"] = $("#inputHours").val();
 
+  console.log(dataCourse);
+  
   $.ajax({
     type: "POST",
     contentType: "application/json",
@@ -375,6 +377,8 @@ function submitMedicalInfo() {
   dataMed["seizure"] = $("#seizure").val();
   dataMed["driveStatus"] = $("#driveStatus").val();
 
+  console.log(dataMed);
+  
   $.ajax({
     type: "POST",
     contentType: "application/json",
@@ -413,6 +417,8 @@ function submitGuardianInfo() {
   dataGuard["guardianZip"] = $("#guardianZip").val();
   dataGuard["guardianPhone"] = $("#guardianPhone").val();
 
+  console.log(dataGuard);
+  
   $.ajax({
     type: "POST",
     contentType: "application/json",
@@ -428,7 +434,7 @@ function submitGuardianInfo() {
     }
   });
 
-  window.location = 'http://localhost:8080/Polyservice/dashboard';
+  window.location = 'http://polyservice-demo.us-east-2.elasticbeanstalk.com/dashboard';
 }
 
 function getGuardianInfo() {
@@ -631,6 +637,7 @@ var ProgressBar = function(p_strId) {
 
         if (form.checkValidity() === true) {
           alert("form is valid!!");
+          submitGuardianInfo();
 
         }
       }, false);

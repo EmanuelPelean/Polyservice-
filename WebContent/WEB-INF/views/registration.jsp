@@ -22,6 +22,7 @@
                               <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
                               <script src="resources/js/config.js"></script>
 
+							  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/core.js"></script>
                               <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
                               <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
@@ -87,6 +88,7 @@
                                                                 <label>Password:</label>
                                                                 <input id="passwordInitial" class="form-control" name="passwordInitial" type="password" required="required">
                                                                   <div class="invalid-feedback">Please enter a valid password.</div>
+                                                                  <small class="form-text text-muted">Password must be at least 6 characters long.</small>	
                                                                 </div>
                                                               </div>
                                                             </div>
@@ -109,6 +111,7 @@
                                                                       Confirm Password:</label>
                                                                     <input id="password" class="form-control" name="password" type="password" required="required">
                                                                       <div class="invalid-feedback">Please enter a valid password.</div>
+                                                                       <small class="form-text text-muted">Password must be at least 6 characters long.</small>
                                                                     </div>
                                                                   </div>
                                                                 </div>
@@ -689,7 +692,7 @@
 
                                                                                               </div>
                                                                                               <div id="step5" style="display: none">
-                                                                                                <form:form action="submitGuardianInfo" method="post" model="command" class="ui guardianInfoForm needs-validation" novalidate="novalidate" id="guardianInformationForm">
+                                                                                                <form class="ui guardianInfoForm needs-validation" novalidate="novalidate" id="guardianInformationForm">
 
                                                                                                   <!-- Guardian Info Form -->
                                                                                                   <div class="row">
@@ -706,7 +709,7 @@
                                                                                                               <div class="control-group form-group">
                                                                                                                 <div class="controls">
                                                                                                                   <label>How did you find out about us? (Optional)</label>
-                                                                                                                  <form:textarea rows="2" cols="100" class="form-control" id="marketing" path="marketing" maxlength="999" style="resize: none"></form:textarea>
+                                                                                                                  <textarea rows="2" cols="100" class="form-control" id="marketing" path="marketing" maxlength="999" style="resize: none"></textarea>
                                                                                                                 </div>
                                                                                                               </div>
                                                                                                             </div>
@@ -717,7 +720,7 @@
                                                                                                               <div class="control-group form-group">
                                                                                                                 <div class="controls">
                                                                                                                   <label>Parent/Guardian Full Name:</label>
-                                                                                                                  <form:input id="guardianName" path="guardianName" class="form-control" name="guardianName" type="text" required="required" data-validation-required-message="Please enter a valid name."></form:input>
+                                                                                                                  <input id="guardianName" path="guardianName" class="form-control" name="guardianName" type="text" required="required" data-validation-required-message="Please enter a valid name."></input>
                                                                                                                   <p class="help-block"></p>
                                                                                                                 </div>
                                                                                                               </div>
@@ -740,7 +743,7 @@
                                                                                                                 <div class="control-group form-group">
                                                                                                                   <div class="controls">
                                                                                                                     <label>Street Address:</label>
-                                                                                                                    <form:input id="guardianAddress" path="guardianAddress" class="form-control" name="guardianAddress" type="text" required="required" data-validation-required-message="Please enter your street address."></form:input>
+                                                                                                                    <input id="guardianAddress" path="guardianAddress" class="form-control" name="guardianAddress" type="text" required="required" data-validation-required-message="Please enter your street address."></input>
                                                                                                                     <p class="help-block"></p>
                                                                                                                   </div>
                                                                                                                 </div>
@@ -750,7 +753,7 @@
                                                                                                                 <div class="control-group form-group">
                                                                                                                   <div class="controls">
                                                                                                                     <label>Apt #:</label>
-                                                                                                                    <form:input id="guardianApt" path="guardianApt" class="form-control" name="guardianApt" type="text"></form:input>
+                                                                                                                    <input id="guardianApt" path="guardianApt" class="form-control" name="guardianApt" type="text"></input>
                                                                                                                     <p class="help-block"></p>
                                                                                                                   </div>
                                                                                                                 </div>
@@ -762,7 +765,7 @@
                                                                                                                 <div class="control-group form-group">
                                                                                                                   <div class="controls">
                                                                                                                     <label>City:</label>
-                                                                                                                    <form:input id="guardianCity" path="guardianCity" class="form-control" name="guardianCity" type="text" required="required" data-validation-required-message="Please enter your city."></form:input>
+                                                                                                                    <input id="guardianCity" path="guardianCity" class="form-control" name="guardianCity" type="text" required="required" data-validation-required-message="Please enter your city."></input>
                                                                                                                     <p class="help-block"></p>
                                                                                                                   </div>
                                                                                                                 </div>
@@ -771,7 +774,7 @@
                                                                                                                 <div class="control-group form-group">
                                                                                                                   <div class="controls">
                                                                                                                     <label>State:</label>
-                                                                                                                    <form:select id="guardianState" path="guardianState" class="form-control" name="guardianState" required="required" data-validation-required-message="Please select your state.">
+                                                                                                                    <select id="guardianState" path="guardianState" class="form-control" name="guardianState" required="required" data-validation-required-message="Please select your state.">
                                                                                                                       <option value="MI">Michigan</option>
                                                                                                                       <option value="AL">Alabama</option>
                                                                                                                       <option value="AK">Alaska</option>
@@ -823,7 +826,7 @@
                                                                                                                       <option value="WV">West Virginia</option>
                                                                                                                       <option value="WI">Wisconsin</option>
                                                                                                                       <option value="WY">Wyoming</option>
-                                                                                                                    </form:select>
+                                                                                                                    </select>
                                                                                                                     <p class="help-block"></p>
                                                                                                                   </div>
                                                                                                                 </div>
@@ -832,7 +835,7 @@
                                                                                                                 <div class="control-group form-group">
                                                                                                                   <div class="controls">
                                                                                                                     <label>Zip Code:</label>
-                                                                                                                    <form:input id="guardianZip" path="guardianZip" class="form-control" name="guardianZip" type="text" maxlength="5" required="required" data-validation-required-message="Please enter your zip code."></form:input>
+                                                                                                                    <input id="guardianZip" path="guardianZip" class="form-control" name="guardianZip" type="text" maxlength="5" required="required" data-validation-required-message="Please enter your zip code."></input>
                                                                                                                     <p class="help-block"></p>
                                                                                                                   </div>
                                                                                                                 </div>
@@ -843,7 +846,7 @@
                                                                                                                 <div class="control-group form-group">
                                                                                                                   <div class="controls">
                                                                                                                     <label>Parent/Guardian Phone#:</label>
-                                                                                                                    <form:input
+                                                                                                                    <input
                                                                                                                       id="guardianPhone"
                                                                                                                       path="guardianPhone"
                                                                                                                       class="form-control input-medium bfh-phone"
@@ -851,7 +854,7 @@
                                                                                                                       name="guardianPhone"
                                                                                                                       type="text"
                                                                                                                       required="required"
-                                                                                                                      data-validation-required-message="Please enter your home phone number."></form:input>
+                                                                                                                      data-validation-required-message="Please enter your home phone number."></input>
                                                                                                                     <p class="help-block"></p>
 
                                                                                                                   </div>
@@ -864,7 +867,7 @@
                                                                                                               <div class="control-group form-group">
                                                                                                                 <div id="stepBtns" class="controls">
                                                                                                                   <!-- <input id="previousBtn" type="button" value="Previous" onclick="pbar2.prevStep(); getMedicalInfo();" class="btn btn-primary"> -->
-                                                                                                                  <input id="sumbitBtn" type="submit" value="Submit Info" class="btn btn-primary"></div>
+                                                                                                                  <input id="sumbitBtn" type="submit" value="Submit Info" class="btn btn-primary" onclick="submitGuardianInfo()"></div>
                                                                                                                 </div>
                                                                                                               </div>
                                                                                                             </div>
@@ -874,7 +877,7 @@
                                                                                                       </div>
 
                                                                                                       <!-- /.row -->
-                                                                                                    </form:form>
+                                                                                                    </form>
 
                                                                                                   </div>
 

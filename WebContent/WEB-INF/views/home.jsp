@@ -67,11 +67,11 @@
 																										Other Pages
 																									</a>
 																									<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-																										<a class="dropdown-item" href="ajax">Ajax Page</a>
 																										<a class="dropdown-item" href="registration">Registration Page</a>
 																										<a class="dropdown-item" href="schedule">Schedule</a>
 																										<a class="dropdown-item" href="dashboard">Dashboard Page</a>
 																										<a class="dropdown-item" href="adminconsole">Admin Console Page</a>
+																										<a class="dropdown-item" href="modifycourse">Create Course Page</a>
 																									</div>
 																								</li>
 																								<li id="loginLi" class="nav-item dropdown">

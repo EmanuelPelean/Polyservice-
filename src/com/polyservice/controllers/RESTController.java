@@ -17,9 +17,9 @@ import com.polyservice.dto.StudentInfoDto;
 import com.polyservice.factory.DaoFactory;
 
 @Controller
-public class CRUDController {
+public class RESTController {
 
-	@RequestMapping(value = "studentInfoFormSubmit", method = RequestMethod.POST)
+	@RequestMapping(value = "/studentInfoFormSubmit.html", method = RequestMethod.POST)
 	public String submitStudentInfo(@RequestBody StudentInfoDto studentInfoForm) {
 
 		System.out.println(studentInfoForm.toString());
@@ -60,7 +60,7 @@ public class CRUDController {
 
 		Dao dao = DaoFactory.getInstance(DaoFactory.USERSDAO);
 
-		System.out.println("(CRUDController) The student we are looking for has id " + studentInfoForm.getStudentID());
+		System.out.println("(RESTController) The student we are looking for has id " + studentInfoForm.getStudentID());
 
 		// Push the current student id to MySQL via hibernate and return the user DTO
 		// that matches this id

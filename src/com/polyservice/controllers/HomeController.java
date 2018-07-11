@@ -64,7 +64,7 @@ public class HomeController {
 
 	
 	@RequestMapping({ "/registration" })
-	public ModelAndView studentRegistration(Model model) {
+	public String studentRegistration() {
 		
 				
 				// Use this to set user id as time stamp, just for development
@@ -78,10 +78,10 @@ public class HomeController {
 				// 3) a java current time (now) instance
 				java.sql.Timestamp currentTimestamp = new java.sql.Timestamp(now.getTime());
 				 
-				model.addAttribute("time", currentTimestamp);
+//				model.addAttribute("time", currentTimestamp);
 				
 
-		return new ModelAndView("registration", "command", new GuardianInfoDto());
+		return "registration";
 	}
 
 //	// this is called when the user clicks to submit form data
